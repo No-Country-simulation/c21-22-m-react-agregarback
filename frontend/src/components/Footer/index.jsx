@@ -3,7 +3,7 @@ import "./style.css";
 const Footer = () => {
   return (
     <div className="footer">
-      <p>© 2024 Adopt me</p>
+      <p>© 2024 Best Friend. Todos los derechos reservados.</p>
     </div>
   );
 };

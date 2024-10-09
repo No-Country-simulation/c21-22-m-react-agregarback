@@ -1,4 +1,6 @@
 nav{
+    display: flex;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -6,6 +8,9 @@ nav{
 }
 nav p{
     margin: 0;
+}
+.logo img{
+    width: 20%;
 }
 .items{
     display: flex;
