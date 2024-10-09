@@ -1,7 +1,6 @@
 import app from "./app.js";
 import db from "./database/database.js"
-import Usuario from "./models/Usuario.js";
-import Mascota from "./models/Mascota.js";
+
 
 const PORT = 3000
 

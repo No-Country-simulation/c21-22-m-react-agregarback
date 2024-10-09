@@ -35,7 +35,7 @@ const SolicitudAdopcion = sequelize.define(
     },
     {
         timestamps: true,
-        tableName: "SolicitudesAdopcion",
+        tableName: "Solicitudes",
     }
 );
 
