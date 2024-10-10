@@ -1,4 +1,4 @@
-import sequelize from "../src/database/database.js.js";
+import sequelize from "../database/database.js";
 import { DataTypes, BOOLEAN } from "sequelize";
 
 const Mascota = sequelize.define(

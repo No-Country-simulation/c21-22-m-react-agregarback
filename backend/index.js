@@ -1,5 +1,6 @@
-import app from "./app.js";
-import db from "./database/database.js"
+import app from "./src/app.js";
+import db from "./src/database/database.js"
+import './src/models/init-models.js'
 
 
 const PORT = 3000

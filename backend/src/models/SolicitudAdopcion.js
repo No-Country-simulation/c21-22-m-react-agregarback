@@ -1,15 +1,10 @@
-import sequelize from "../src/database/database.js.js";
+import sequelize from "../database/database.js";
 import { DataTypes, BOOLEAN } from "sequelize";
 
 const SolicitudAdopcion = sequelize.define(
     "Solicitud",
     {
-        idMascota: {
-            type: DataTypes.INTEGER()
-        },
-        idUsuario: {
-            type: DataTypes.INTEGER()
-        },
+       
         habitantesVivienda: {
             type: DataTypes.STRING(50),
             allowNull: false,
@@ -26,8 +21,8 @@ const SolicitudAdopcion = sequelize.define(
             type: DataTypes.STRING(20),
             allowNull: false,
         },
-        estado: {
-            type: DataTypes.BOOLEAN(),
+        estado:{
+            type:DataTypes.BOOLEAN(),
             allowNull: true,
             defaultValue: false,
         },

@@ -1,5 +1,5 @@
 import { DataTypes, BOOLEAN } from "sequelize";
-import sequelize from "../src/database/database.js.js";
+import sequelize from "../database/database.js";
 
 const Usuario = sequelize.define(
     'Usuario',
