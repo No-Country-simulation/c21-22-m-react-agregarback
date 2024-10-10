@@ -12,19 +12,19 @@ const Nav = () => {
       </div>
       <div className="items">
         <Link to="/">
-          <p>Inicio</p>
+          <p><b>Inicio</b></p>
         </Link>
         <Link to="/dogs">
-          <p>Perros</p>
+          <p><b>Perros</b></p>
         </Link>
         <Link to="/cats">
-          <p>Gatos</p>
+          <p><b>Gatos</b></p>
         </Link>
         <Link to="/about">
-          <p>Sobre Nosotros</p>
+          <p><b>Sobre Nosotros</b></p>
         </Link>
         <Link to="/contact">
-          <p>Contacto</p>
+          <p><b>Contacto</b></p>
         </Link>
       </div>
     </nav>
