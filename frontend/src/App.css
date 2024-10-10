@@ -1,10 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 body{
-  background-color: rgb(175, 99, 0);
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
+  background-color: #F2EFEB;
+  color: #261501;
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
+  font-style: regular;
   margin: 0;
 }
 .App{
@@ -13,7 +14,7 @@ body{
 }
 a{
   text-decoration: none;
-  color: white;
+  color: #1D4273;
 }
 a:hover{
   transform: scale(1.2);
