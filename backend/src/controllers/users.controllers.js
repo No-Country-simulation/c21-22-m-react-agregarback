@@ -3,9 +3,17 @@ import { QueryTypes } from "sequelize";
 import bcrypt from "bcrypt";
 import User from '../models/User.js'
 
-const createUser = async (req, res) => {
+export const singUp = async (req, res) => {
     try {
         const { nombre, apellido, email, password } = req.body;
+
+        const findUser = await User.findOne({ where: { email } });
+        if (findUser) {
+            return res.status(400).json({
+                code: 400,
+                message: "El email ingresado ya se encuentra registrado."
+            });
+        };
 
         const saltRounds = 10;
         const salt = bcrypt.genSaltSync(saltRounds);
@@ -28,4 +36,18 @@ const createUser = async (req, res) => {
     }
 }
 
-export default createUser;
+export const singIn = async (req, res) => {
+    try {
+        res.status(200).json({
+            code: 200,
+            message: "Login éxitoso.",
+            usuario: req.usuario
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            code: 500,
+            message: "Error en el proceso de autenticación.",
+        });
+    }
+}

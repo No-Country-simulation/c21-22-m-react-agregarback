@@ -1,7 +1,9 @@
 import { Router } from "express";
-import createUser from "../controllers/users.controllers.js"
+import { singUp, singIn } from "../controllers/users.controllers.js"
+import singUpAuth from "../../middlewares/singUpAuth.middlewares.js";
 const router = Router();
 
-router.post("/", createUser)
+router.post("/singUp", singUp)
+router.post("/SingIn", singUpAuth, singIn)
 
 export default router;
