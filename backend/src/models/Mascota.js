@@ -1,4 +1,4 @@
-import sequelize from "../src/database/database.js.js";
+import sequelize from "../database/database.js";
 import { DataTypes, BOOLEAN } from "sequelize";
 
 const Mascota = sequelize.define(
@@ -9,6 +9,10 @@ const Mascota = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
+        nombreMascota: {
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
         imagen: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -16,10 +20,6 @@ const Mascota = sequelize.define(
             validate: {
                 notEmpty: true,
             },
-        },
-        nombreMascota: {
-            type: DataTypes.STRING(50),
-            allowNull: false,
         },
         especie: {
             type: DataTypes.STRING(50),
