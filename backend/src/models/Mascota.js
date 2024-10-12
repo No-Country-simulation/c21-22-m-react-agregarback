@@ -13,6 +13,14 @@ const Mascota = sequelize.define(
             type: DataTypes.STRING(50),
             allowNull: false,
         },
+        imagen: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: "producto.jpg",
+            validate: {
+                notEmpty: true,
+            },
+        },
         especie: {
             type: DataTypes.STRING(50),
             allowNull: false

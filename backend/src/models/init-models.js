@@ -1,4 +1,4 @@
-import Usuario from "./Usuario.js";
+import Usuario from "./User.js";
 import Mascota from "./Mascota.js";
 import SolicitudAdopcion from "./SolicitudAdopcion.js";
 

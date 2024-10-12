@@ -9,6 +9,14 @@ const Mascota = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
+        imagen: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: "producto.jpg",
+            validate: {
+                notEmpty: true,
+            },
+        },
         nombreMascota: {
             type: DataTypes.STRING(50),
             allowNull: false,
