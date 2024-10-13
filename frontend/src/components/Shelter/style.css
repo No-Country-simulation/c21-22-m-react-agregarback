@@ -1,0 +1,10 @@
+.shelter{
+    margin: 2em 5em;
+}
+.shelter h3, .shelter h5{
+    margin-bottom: 1em;
+    color: #1D4273;
+}
+.shelter p{
+    margin-bottom: 2em;
+}

@@ -1,0 +1,15 @@
+.donate{
+    background-image: url("../../../public/assets/donate.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    padding: 2em 5em;
+}
+.donate p{
+    width: 63%;
+}
+.donate div{
+    margin-left: 13em;
+}
+.donate div button{
+    margin: 0 1em;
+}
