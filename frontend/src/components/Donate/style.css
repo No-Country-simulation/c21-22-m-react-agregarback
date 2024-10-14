@@ -2,10 +2,11 @@
     background-image: url("../../../public/assets/donate.png");
     background-position: right;
     background-repeat: no-repeat;
-    padding: 2em 5em;
+    padding: 2em 8.5em;
+    margin-bottom: 2em;
 }
 .donate p{
-    width: 63%;
+    width: 65%;
 }
 .donate div{
     margin-left: 13em;

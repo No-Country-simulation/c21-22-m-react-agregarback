@@ -1,3 +1,37 @@
 .footer{
+    background-color: white;
+}
+.footer p{
     text-align: center;
+}
+.footer .info{
+    display: flex;
+    align-items: center;
+}
+.footer .info img{
+    width: 20%;
+}
+.footer .info .contact{
+    margin: 0 17em;
+}
+.footer .info div div a{
+    display: flex;
+}
+.footer .info div div img{
+    margin-right: 0.5em;
+    width: 7%;
+    height: 7%;
+}
+.footer .info div div p{
+    color: #261501;
+}
+.footer .info div div img:hover{
+    transform: scale(1.2);
+}
+.footer .info .socialMedia{
+    display: flex;
+}
+.footer .info .socialMedia div img{
+    width: 50%;
+    height: 50%;
 }

@@ -16,10 +16,10 @@ const Donate = () => {
       <p>Puedes donar de manera segura a través de PayPal o contactarnos para coordinar la entrega de insumos. <b>Con tu ayuda, podemos continuar rescatando y cuidando a más animales.</b></p>
       <div>
         <Link to="https://www.paypal.com" target="_blank">
-          <button type="button" class="btn btn-primary">Donar ahora</button>
+          <button type="button" class="btn btn-dark">Donar ahora</button>
         </Link>
         <Link to="/contact">
-          <button type="button" class="btn btn-primary">Contáctanos</button>
+          <button type="button" class="btn btn-dark">Contáctanos</button>
         </Link>
       </div>
     </div>
