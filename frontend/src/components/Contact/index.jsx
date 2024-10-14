@@ -1,6 +1,5 @@
 import "./style.css";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const Contact = () => {
   return (
@@ -18,7 +17,6 @@ const Contact = () => {
               <label className="form-label">Nombre completo</label>
               <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
-
             <div className="mb-3">
               <label className="form-label">Email</label>
               <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />

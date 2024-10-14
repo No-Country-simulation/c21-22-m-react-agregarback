@@ -49,7 +49,7 @@ const Nav = () => {
       </div>
       <div className="login">
         <Link to="/login">
-          <button type="button" class="btn btn-dark">Inicia sesión</button>
+          <button type="button" class="btn btn-dark">Iniciar sesión</button>
         </Link>
       </div>
     </nav>
