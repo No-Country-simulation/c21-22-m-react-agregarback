@@ -1,6 +1,7 @@
 import "./style.css";
 import Shelter from "../Shelter";
 import Donate from "../Donate";
+import Testimonials from "../Testimonials";
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
       </div>
       <Shelter />
       <Donate />
+      <Testimonials />
     </>
   );
 };

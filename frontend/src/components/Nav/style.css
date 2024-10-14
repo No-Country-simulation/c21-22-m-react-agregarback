@@ -10,15 +10,31 @@ nav{
 nav p{
     margin: 0;
 }
-.logo img{
+nav .logo img{
     width: 30%;
 }
-.items{
+nav .items{
     width: 70%;
-    margin-right: 20em;
+    margin-left: 7em;
     display: flex;
     justify-content: center;
 }
-.items p{
+nav .items p{
     margin: 0 1em;
+}
+nav .socialMedia{
+    display: flex;
+    margin: 0 4em;
+}
+nav .socialMedia div{
+    width: max-content;
+}
+nav .socialMedia img{
+    width: 60%;
+}
+nav .items p:hover, .socialMedia img:hover{
+    transform: scale(1.2);
+}
+nav .login{
+    width: 20%;
 }

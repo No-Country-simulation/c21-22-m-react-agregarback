@@ -1,6 +1,9 @@
 import "./style.css";
 import { Link } from "react-router-dom";
 import logo from "/assets/logo.png?url";
+import whatsapp from "/assets/whatsapp.png?url";
+import instagram from "/assets/instagram.png?url";
+import facebook from "/assets/facebook.png?url";
 
 const Nav = () => {
   return (
@@ -25,6 +28,28 @@ const Nav = () => {
         </Link>
         <Link to="/contact">
           <p><b>Contacto</b></p>
+        </Link>
+      </div>
+      <div className="socialMedia">
+        <div>
+          <Link to="https://wa.me" target="_blank">
+            <img src={whatsapp} alt="whatsapp" />
+          </Link>
+        </div>
+        <div>
+          <Link to="https://www.instagram.com" target="_blank">
+            <img src={instagram} alt="instagram" />
+          </Link>
+        </div>
+        <div>
+          <Link to="https://www.facebook.com" target="_blank">
+            <img src={facebook} alt="facebook" />
+          </Link>
+        </div>
+      </div>
+      <div className="login">
+        <Link to="/login">
+          <button type="button" class="btn btn-dark">Inicia sesión</button>
         </Link>
       </div>
     </nav>
