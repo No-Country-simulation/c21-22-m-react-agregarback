@@ -3,7 +3,7 @@ import { QueryTypes } from "sequelize";
 import bcrypt from "bcrypt";
 import User from '../models/User.js'
 
-export const singUp = async (req, res) => {
+const signUp = async (req, res) => {
     try {
         const { nombre, apellido, email, password } = req.body;
 
@@ -36,18 +36,30 @@ export const singUp = async (req, res) => {
     }
 }
 
-export const singIn = async (req, res) => {
+const logIn = async (req, res) => {
     try {
         res.status(200).json({
             code: 200,
             message: "Login éxitoso.",
-            usuario: req.usuario
+            usuario: req.usuario,
+            token: req.token
+
         });
 
     } catch (error) {
         res.status(500).json({
             code: 500,
             message: "Error en el proceso de autenticación.",
+            error
         });
     }
-}
+};
+
+
+let controllers = {
+    signUp,
+    logIn,
+    
+};
+
+export default controllers;
