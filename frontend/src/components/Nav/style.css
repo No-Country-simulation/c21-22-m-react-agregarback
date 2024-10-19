@@ -6,6 +6,10 @@ nav{
     z-index: 10;
     padding: 0.5em;
     background-color: #F2EFEB;
+    background-image: url("../../../public/assets/bone.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40% 70%;
 }
 nav p{
     margin: 0;
@@ -15,7 +19,7 @@ nav .logo img{
 }
 nav .items{
     width: 70%;
-    margin-left: 7em;
+    margin-left: 8em;
     display: flex;
     justify-content: center;
 }
@@ -24,7 +28,7 @@ nav .items p{
 }
 nav .socialMedia{
     display: flex;
-    margin: 0 4em;
+    margin: 0 3em;
 }
 nav .socialMedia div{
     width: max-content;
