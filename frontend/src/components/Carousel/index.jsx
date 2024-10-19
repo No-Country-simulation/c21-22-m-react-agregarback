@@ -12,7 +12,7 @@ import cats from "/assets/10.jpeg?url";
 
 const Carousel = () => {
   return (
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-interval="2000">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src={shelter} class="d-block w-100" alt="shelter" />
