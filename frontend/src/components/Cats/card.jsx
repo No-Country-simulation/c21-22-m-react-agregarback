@@ -23,9 +23,3 @@ export const Card = ({ title, body, id, image, handleOpenModal }) => {
         </div>
     )
 }
-
-
-
-
-
-

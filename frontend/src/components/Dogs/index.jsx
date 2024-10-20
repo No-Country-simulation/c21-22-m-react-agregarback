@@ -7,6 +7,10 @@ const Dogs = () => {
   const [dogPic, setDogPic] = useState([""])
   const [dogData, setDogData] = useState([])
   const [selectedDog, setSelectedDog] = useState(null)
+  const [fullName, setFullName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [message, setMessage] = useState("")
 
   useEffect(() => {
     getDogPic()
@@ -15,14 +19,14 @@ const Dogs = () => {
 
   const getDogPic = async () => {
     try {
-      const response = await fetch("https://dog.ceo/api/breed/hound/images")
+      const response = await fetch("https://api.thedogapi.com/v1/images/search?limit=10")
       if (!response.ok) {
         console.error(response.statusText)
         return false
       }
       const apiDogImage = await response.json()
       console.log("This are the images", apiDogImage)
-      setDogPic(apiDogImage.message)
+      setDogPic(apiDogImage)
       return true
     } catch (error) {
       console.error("Error", error)
@@ -49,9 +53,48 @@ const Dogs = () => {
       return false
     }
   }
+
+  const requestAdoption = async () => {
+    try {
+      const response = await fetch('https://findyourbestfriend.vercel.app/api/v1/adoption', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ selectedDog })
+      })
+      if (!response.ok) {
+        console.error(response.statusText)
+        return false
+      }
+      const data = await response.json()
+      console.log("User sent:", data)
+      return true
+    } catch (error) {
+      console.error("Error", error)
+    }
+  }
+
+  const newAdoptionForm = {
+    "name": fullName,
+    "email": email,
+    "phone": phone,
+    "message": message
+  }
+  const sendForm = async () => {
+    if (fullName && email && phone && message) {
+      const result = await requestAdoption(newAdoptionForm)
+      if (result) {
+        alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo")
+      } else {
+        alert("No se pudo enviar la solicitud, recuerda llenar todos los campos")
+      }
+    }
+  }
+
   const cardDogPic = (index) => {
     if (dogPic.length > 0) {
-      return dogPic[index]
+      return dogPic[index].url
     }
     console.log("Error: no images found")
     return ""
@@ -62,13 +105,13 @@ const Dogs = () => {
   }
 
   return (
-    <div className="container-md">
+    <div className="container-md mb-5">
       <div className="row mt-5 mb-3">
         <div className="col">
           <div className="d-flex justify-content-between">
             <div>
               <h2>¡Adopta a tu mejor amigo!</h2>
-              <p>Ellos esperan por una familia capaz de darles todo el amor y el cuidado que se merecen. Aquí inicia tu camino para darles una segunda oportunidad. <br /> <br /> En esta sección podrás conocer a todos los perros que están disponibles y listos para ser adoptados. Tómate tu tiempo hasta encontrar al indicado para ti. Ábreles tu hogar, tú también puedes poner una patita para ayudarlos. </p>
+              <p className="h5 fw-normal">Ellos esperan por una familia capaz de darles todo el amor y el cuidado que se merecen. Aquí inicia tu camino para darles una segunda oportunidad. <br /> <br /> En esta sección podrás conocer a todos los perros que están disponibles y listos para ser adoptados. Tómate tu tiempo hasta encontrar al indicado para ti. Ábreles tu hogar, tú también puedes poner una patita para ayudarlos. </p>
             </div>
             <img className="adoption-image" src="public/assets/adopt-dog.png" style={{ width: "40%" }} alt="adoption-image" />
 
@@ -115,34 +158,70 @@ const Dogs = () => {
                   aria-label="Close"
                 ></button>
               </div>
-              <div className="modal-body d-flex">
+              <div className="container-sm modal-body d-flex flex-column">
                 <img
                   src={selectedDog.image}
                   alt="dog-image"
-                  className="img-fluid ms-3 mt-0"
+                  className="img-fluid rounded mx-auto d-block mt-0 mb-3 mw-50 h-50"
                 />
                 <div className="mx-4">
-                  <div className="mb-3">{selectedDog.body}</div>
+                  <div className="mb-3 text-justify">{selectedDog.body}</div>
                   <form>
                     <div className="mb-3">
-                      <label className="form-label fw-bold">Nombre completo</label>
-                      <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                      <h5>Para adoptar a {selectedDog.title}, llena el siguiente formulario</h5>
                     </div>
                     <div className="mb-3">
-                      <label className="form-label fw-bold">Email</label>
-                      <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                      <div id="emailHelp" className="form-text">No compartiremos tu correo con nadie.</div>
+                      <div className="form-outline" data-mdb-input-init>
+                        <input
+                          value={fullName}
+                          onChange={(e) => setFullName(e.target.value)}
+                          type="text"
+                          id="inputFullName"
+                          className="form-control" />
+                        <label className="form-label" htmlFor="inputFullName">Nomble completo</label>
+                      </div>
+                    </div>
+                    <div className="mb-3">
+                      <div className="form-outline" data-mdb-input-init>
+                        <input
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          type="email"
+                          id="inputEmail"
+                          className="form-control" />
+                        <label className="form-label" htmlFor="inputEmail">Email</label>
+                      </div>
+                      <div className="form-outline" data-mdb-input-init>
+                        <input
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          type="tel"
+                          id="inputPhone"
+                          className="form-control" />
+                        <label className="form-label" htmlFor="inputPhone">Teléfono</label>
+                      </div>
                     </div>
                     <div className="mb-3">
                       <label className="form-label fw-bold">Mensaje</label>
-                      <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>                    
+                      <textarea
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="form-control"
+                        id="inputMessage"
+                        rows="3"></textarea>
+                    </div>
                   </form>
                 </div>
               </div>
               <div className="modal-footer">
                 <button
-                  onClick={() => setSelectedDog(null)}
+                  onClick={() => {
+                    setSelectedDog(null);
+                    setFullName("");
+                    setEmail("");
+                    setPhone("");
+                    setMessage("");
+                  }}
                   type="button"
                   data-dismiss="modal"
                   aria-label="Close"
@@ -150,7 +229,10 @@ const Dogs = () => {
                 >
                   Cerrar
                 </button>
-                <button type="button" className="btn btn-success">
+                <button
+                  onClick={() => sendForm()}
+                  type="button"
+                  className="btn btn-success">
                   Adoptar
                 </button>
               </div>
