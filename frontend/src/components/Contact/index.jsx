@@ -1,6 +1,5 @@
 import "./style.css";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const Contact = () => {
   return (
@@ -8,7 +7,7 @@ const Contact = () => {
       <div className="row">
         <div className="col-7">
           <div>
-            <h3>¿Te interesa adoptar un gato o un perro?</h3>
+            <h3><b>¿Te interesa adoptar un gato o un perro?</b></h3>
             <p>
               Si estás intersado en iniciar el proceso de adopción o quisieras visitar nuestro refugio para conocer a nuestros peludos, por favor llena el formulario aquí abajo y nos pondremos en contacto contigo, para que puedas conocerlos y saber más de nuestro proyecto.
             </p>
@@ -18,7 +17,6 @@ const Contact = () => {
               <label className="form-label fw-bold">Nombre completo</label>
               <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
-
             <div className="mb-3">
               <label className="form-label fw-bold">Email</label>
               <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
@@ -37,14 +35,14 @@ const Contact = () => {
         </div>
         <div className="col-5">
           <div>
-            <h3>Información de contacto</h3>
-            <p>Teléfono: 614-891-528 <br /> Email: bestfriend@refugioanimal.org <br /> Dirección: La Turbinas I-255</p>
+            <h3><b>Información de contacto</b></h3>
+            <p><b>Teléfono:</b> 614-891-528 <br /> <b>Email:</b> bestfriend@refugioanimal.org <br /> <b>Dirección:</b> La Turbinas I-255</p>
             <p></p>
             <p></p>
           </div>
           <div>
-            <h3>Horario de atención</h3>
-            <p>Lunes a viernes: de 10:00 a 17:00</p>
+            <h3><b>Horario de atención</b></h3>
+            <p><b>Lunes a viernes:</b> de 10:00 a 17:00</p>
             <p></p>            
           </div>
           <iframe

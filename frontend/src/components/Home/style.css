@@ -1,0 +1,34 @@
+.home{
+    background-image: url("../../../public/assets/home.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 32em;
+}
+.home h1{
+    text-align: right;
+    margin-right: 1em;
+}
+.home h4{
+    text-align: right;
+    margin-right: 1.7em;
+}
+.intro{
+    margin: 2em 8.5em;
+    text-align: center;
+}
+.steps{
+    background-image: url("../../../public/assets/food.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 0 8.5em 2em 8.5em;
+}
+.steps h3, .donate h3, .donate h5{
+    margin: 1.5em 0;
+    color: #1D4273;
+}
+.steps p{
+    font-size: 0.95em;
+    width: 80%;
+}

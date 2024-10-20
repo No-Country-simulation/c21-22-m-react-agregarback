@@ -1,0 +1,21 @@
+.loginSection{
+    height: max-content;
+    padding: 3em 30em;
+    background-image: url("../../../public/assets/login.jpeg");
+    background-position: left;
+    background-size: cover;
+}
+.loginSection h5{
+    text-align: center;
+    color: #1D4273;
+}
+.loginSection form{
+    margin: 3em 0;
+}
+.loginButton{
+    width: max-content;
+    margin: auto;
+}
+.loginSection div p{
+    text-align: center;
+}
