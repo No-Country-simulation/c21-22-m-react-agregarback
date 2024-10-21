@@ -1,0 +1,25 @@
+.testimonials{
+    margin: 2em 5em 0 5em;
+}
+.testimonials h3{
+    color: #1D4273;
+    margin: 0 2em 1em 2em;
+}
+.testimonial, .testimonial div{
+    display: flex;
+}
+.testimonial div{
+    margin: 1em;
+    color: white;
+    background-color: #1D4273;
+    border-radius: 40px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+.testimonial img{
+    padding: 1em;
+    width: 50%;
+    border-radius: 40px;
+}
+.testimonial p{
+    padding: 1em 1em 1em 0;
+}

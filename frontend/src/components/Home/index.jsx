@@ -24,8 +24,8 @@ const Home = () => {
         <p>Comienza tu viaje hacia la adopción. <b>¡Tu nuevo mejor amigo te está esperando!</b></p>
       </div>
       <Shelter />
-      <Donate />
       <Testimonials />
+      <Donate />
     </>
   );
 };

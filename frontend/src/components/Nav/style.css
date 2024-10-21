@@ -26,6 +26,9 @@ nav .items{
 nav .items p{
     margin: 0 1em;
 }
+nav .bone{
+    display: none;
+}
 nav .socialMedia{
     display: flex;
     margin: 0 3em;
@@ -41,4 +44,55 @@ nav .items p:hover, .socialMedia img:hover{
 }
 nav .login{
     width: 20%;
+}
+nav .menu{
+    display: none;
+}
+
+@media screen and (max-width: 767px){
+    nav{
+        background-image: none;
+        width: 100vw;
+    }
+    nav .menu{
+        display: block;
+        padding: 1em;
+        border: 0;
+    }
+    nav .menu img{
+        width: 2em;
+    }
+    nav .logo img{
+        width: 5em;
+        margin: 0 6em 0 9em;
+    }
+    nav .items, nav .socialMedia, nav .login{
+        display: none;
+    }
+    nav.menuOpen, nav.menuOpen .items{
+        display: flex;
+        flex-direction: column;
+    }
+    nav.menuOpen .logo{
+        margin: 0 8em 0 5em;
+    }
+    nav.menuOpen .items{
+        text-align: center;
+        margin: 1em 0 0 0;
+    }
+    nav.menuOpen .bone{
+        display: block;
+    }
+    nav.menuOpen .bone img{
+        width: 12em;
+    }
+    nav.menuOpen .socialMedia{
+        display: flex;
+        margin-left: 4em;
+    }
+    nav.menuOpen .login{
+        display: block;
+        width: max-content;
+        margin-top: 1em;
+    }
 }

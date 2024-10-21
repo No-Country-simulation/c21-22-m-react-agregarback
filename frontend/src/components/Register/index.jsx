@@ -1,4 +1,5 @@
 import "./style.css";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -6,7 +7,7 @@ const Register = () => {
     <div className="register">
       <h2>Únete a la comunidad de <b>Best Friend</b></h2>
       <h5>Crea una cuenta para conocer a nuestros peludos y enviar solicitudes de adopción</h5>
-      <form>
+      <form action="http://localhost:3000/api/v1/user/singUp" method="post">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
           <input type="text" class="form-control" id="nombre" required />
