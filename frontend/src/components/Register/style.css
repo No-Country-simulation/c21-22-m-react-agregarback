@@ -1,0 +1,22 @@
+.register{
+    height: max-content;
+    padding: 3em 15em;
+    background-image: url("../../../public/assets/register.JPG");
+    background-position: left;
+    background-size: cover;
+}
+.register h2, .register h5{
+    text-align: center;
+    color: #1D4273;
+}
+.register form{
+    margin: 3em 0;
+    padding: 0 10em;
+}
+.registerButton{
+    width: max-content;
+    margin: auto;
+}
+.register div p{
+    text-align: center;
+}

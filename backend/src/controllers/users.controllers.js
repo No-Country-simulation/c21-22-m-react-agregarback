@@ -5,8 +5,8 @@ import User from '../models/User.js'
 
 const signUp = async (req, res) => {
     try {
-        const { nombre, apellido, email, password } = req.body;
-
+        const { nombre, apellido, email, telefono, fechaNacimiento,password,direccion } = req.body;
+console.log(req.body)
         const findUser = await User.findOne({ where: { email } });
         if (findUser) {
             return res.status(400).json({
@@ -23,7 +23,10 @@ const signUp = async (req, res) => {
             nombre,
             apellido,
             email,
-            password: hash
+            telefono,
+            fechaNacimiento,
+            password: hash,
+            direccion
         })
         res.status(201).json({
             code: 201,
