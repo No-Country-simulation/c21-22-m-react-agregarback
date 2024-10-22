@@ -4,9 +4,10 @@ import bcrypt from "bcrypt";
 import User from '../models/User.js'
 
 const signUp = async (req, res) => {
+
     try {
-        const { nombre, apellido, email, telefono, fechaNacimiento,password,direccion } = req.body;
-console.log(req.body)
+        const { nombre, apellido, email, password, telefono, direccion, fechaNacimiento } = req.body;
+
         const findUser = await User.findOne({ where: { email } });
         if (findUser) {
             return res.status(400).json({
@@ -23,17 +24,21 @@ console.log(req.body)
             nombre,
             apellido,
             email,
-            telefono,
-            fechaNacimiento,
             password: hash,
-            direccion
+            telefono,
+            direccion,
+            fechaNacimiento
         })
         res.status(201).json({
             code: 201,
-            message: "Usuario creado con éxito",
-            data: newUser
+            message: "Usuario creado con éxito ",
+            data: {
+                id: newUser.id,
+                nombre: newUser.nombre,
+                apellido: newUser.apellido,
+                email: newUser.email
+            }
         });
-
     } catch (error) {
         console.log(error)
     }
@@ -62,7 +67,7 @@ const logIn = async (req, res) => {
 let controllers = {
     signUp,
     logIn,
-    
+
 };
 
 export default controllers;
