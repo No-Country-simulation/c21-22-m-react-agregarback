@@ -31,7 +31,7 @@ nav .bone{
 }
 nav .socialMedia{
     display: flex;
-    margin: 0 3em;
+    margin-left: 1em;
 }
 nav .socialMedia div{
     width: max-content;
@@ -43,7 +43,7 @@ nav .items p:hover, .socialMedia img:hover{
     transform: scale(1.2);
 }
 nav .login{
-    width: 20%;
+    width: 17%;
 }
 nav .menu{
     display: none;
@@ -56,7 +56,10 @@ nav .menu{
     }
     nav .menu{
         display: block;
-        border: 0;
+        border: none;
+        padding: 0;
+        margin: 1em;
+        background-color: transparent;
     }
     nav .menu img{
         width: 2em;
@@ -65,7 +68,7 @@ nav .menu{
         width: 5em;
         margin: 0 6em 0 9em;
     }
-    nav .items, nav .socialMedia, nav .login{
+    nav .items, nav .socialMedia, nav .login, nav .register{
         display: none;
     }
     nav.menuOpen, nav.menuOpen .items{
@@ -89,9 +92,37 @@ nav .menu{
         display: flex;
         margin-left: 4em;
     }
-    nav.menuOpen .login{
+    nav.menuOpen .login, nav.menuOpen .register{
         display: block;
         width: max-content;
         margin-top: 1em;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    nav{
+        background-size: 45% 80%;
+    }
+    nav .logo img{
+        width: 50%;
+    }
+    nav .items{
+        margin-left: 30em;
+    }
+    nav .items p, nav .login button, nav .register button{
+        font-size: 2em;
+    }
+    nav .socialMedia{
+        margin-right: 1em;
+    }
+    nav .socialMedia img{
+        width: 120%;
+        padding: 0 1em;
+    }
+    nav .login{
+        width: 15%;
+    }
+    nav .register{
+        padding-right: 1em;
     }
 }

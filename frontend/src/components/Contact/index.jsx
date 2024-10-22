@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 const Contact = () => {
   return (
+    <div className="contactSection">
     <div className="container mt-5">
       <div className="row">
         <div className="col-7">
@@ -57,7 +58,8 @@ const Contact = () => {
           ></iframe>
         </div>
       </div>
-    </div >
+    </div>
+    </div>
   );
 };
 

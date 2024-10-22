@@ -8,10 +8,12 @@
 .home h1{
     text-align: right;
     margin-right: 1em;
+    color: #1D4273;
 }
 .home h4{
     text-align: right;
     margin-right: 1.7em;
+    color: #1D4273;
 }
 .intro{
     margin: 2em 8.5em;
@@ -31,4 +33,54 @@
 .steps p{
     font-size: 0.95em;
     width: 80%;
+}
+
+@media screen and (max-width: 767px){
+    .home{
+        height: 20em;
+    }
+    .home h1, .home h4{
+        margin: 0;
+        text-align: center;
+        padding: 0 1em;
+    }
+    .home h4, .intro h5{
+        font-size: 1em;
+    }
+    .intro{
+        margin: 0 2em;
+    }
+    .steps{
+        background-size: 60% 30%;
+        padding: 0 2em;
+    }
+    .steps p{
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .home{
+        height: 60em;
+    }
+    .home h1{
+        font-size: 4em;
+        margin-right: 1.5em;
+    }
+    .home h4{
+        font-size: 3em;
+        margin-right: 2em;
+    }
+    .intro{
+        margin: 2em 25em;
+    }
+    .intro h5, .steps p, .steps h6{
+        font-size: 2em;
+    }
+    .steps{
+        margin: 2em 10em;
+    }
+    .steps h3{
+        font-size: 3em;
+    }
 }

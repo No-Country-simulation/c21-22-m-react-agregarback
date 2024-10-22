@@ -16,7 +16,7 @@ const Nav = () => {
   return (
     <nav className={`${clicked ? "menuOpen" : ""}`}>
       <div className="logo">
-        <Link to="/" onClick={handleClick}>
+        <Link to="/">
           <img src={logo} alt="logo" />
         </Link>
       </div>
@@ -60,6 +60,11 @@ const Nav = () => {
       <div className="login">
         <Link to="/login" onClick={handleClick}>
           <button type="button" class="btn btn-dark">Iniciar sesión</button>
+        </Link>
+      </div>
+      <div className="register">
+        <Link to="/register" onClick={handleClick}>
+          <button type="button" class="btn btn-dark">Registrarse</button>
         </Link>
       </div>
       <button className="menu" onClick={handleClick}>

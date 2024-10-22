@@ -35,3 +35,35 @@
     width: 50%;
     height: 50%;
 }
+
+@media screen and (max-width: 767px){
+    .footer .info{
+        display: flex;
+        flex-direction: column;
+    }
+    .footer .info img{
+        width: 50%;
+    }
+    .footer .info .contact{
+        margin: 0;
+    }
+    .footer .info .socialMedia{
+        margin: 0em 0 1em 0;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .footer .info .contact{
+        width: 33em;
+        margin: 0 30em;
+    }
+    .footer p, .footer .info .contact p{
+        font-size: 2em;
+    }
+    .footer .info .socialMedia div{
+        padding: 0 1em;
+    }
+    .footer .info .socialMedia div img{
+        width: 4em;
+    }
+}
