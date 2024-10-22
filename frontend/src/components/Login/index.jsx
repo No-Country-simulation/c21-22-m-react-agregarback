@@ -1,4 +1,5 @@
 import "./style.css";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -6,7 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const isLoggedIn = !!localStorage.getItem("token");
-  const handleLogin = async (e) => {
+  const handleLogin = async e => {
     e.preventDefault();
     try {
       const response = await fetch("https://3395-181-73-15-203.ngrok-free.app/api/v1/user/login", {
@@ -16,8 +17,8 @@ const Login = () => {
         },
         body: JSON.stringify({
           email: email,
-          password: password,
-        }),
+          password: password
+        })
       });
       const data = await response.json();
       if (response.ok) {
@@ -26,10 +27,10 @@ const Login = () => {
           icon: "success",
           title: data.message,
           showConfirmButton: false,
-          timer: 3000,
+          timer: 3000
         });
         localStorage.setItem("token", data.token);
-        navigate("/");
+        navigate("/profile");
       } else {
         Swal.fire({
           position: "top-end",
@@ -40,7 +41,7 @@ const Login = () => {
         });
       };
     } catch (error) {
-      console.error("Error al realizar el login:", error);
+      console.error("Error al realizar el login: ", error);
     };
   };
   const handleLogout = () => {
@@ -68,7 +69,7 @@ const Login = () => {
                 id="email"
                 name="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -82,7 +83,7 @@ const Login = () => {
                 id="password"
                 name="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -103,12 +104,12 @@ const Login = () => {
           </div>
         </>
       ) : (
-        <div>
+        <>
           <h5>Ya has iniciado sesión</h5>
           <button onClick={handleLogout} className="btn btn-dark">
             Cerrar sesión
           </button>
-        </div>
+        </>
       )}
     </div>
   );

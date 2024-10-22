@@ -1,4 +1,5 @@
 import "./style.css";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -12,14 +13,14 @@ const Register = () => {
     password: ""
   });
   const navigate = useNavigate(); 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-  console.log(formData)
-  const handleSubmit = async (e) => {
+  console.log(formData);
+  const handleSubmit = async e => {
     e.preventDefault(); 
     try {
       const response = await fetch("https://3395-181-73-15-203.ngrok-free.app/api/v1/user/signup", {
@@ -38,7 +39,7 @@ const Register = () => {
           showConfirmButton: false,
           timer: 3000
         });
-        navigate("/home");  
+        navigate("/login");  
       } else {
         Swal.fire({
           position: "top-end",
@@ -49,7 +50,7 @@ const Register = () => {
         });
       };
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error: ", error);
       alert("Error en la solicitud. Por favor, intenta de nuevo.");
     };
   };
