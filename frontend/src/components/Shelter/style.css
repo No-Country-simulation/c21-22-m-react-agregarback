@@ -20,12 +20,12 @@
         margin: 2em 18.5em;
     }
     .shelter h3{
-        font-size: 3em;
-    }
-    .shelter h5{
         font-size: 2.5em;
     }
-    .shelter p{
+    .shelter h5{
         font-size: 2em;
+    }
+    .shelter p{
+        font-size: 1.5em;
     }
 }

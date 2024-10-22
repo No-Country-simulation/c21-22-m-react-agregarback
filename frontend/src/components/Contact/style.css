@@ -31,37 +31,13 @@
 
 @media screen and (min-width: 2500px){
     .container{
-        margin: 2em auto;
+        margin-bottom: 1em;
     }
     .row .col-7 h3, .row .col-5 h3{
-        font-size: 3em;
-        margin: 1em 0;
-    }
-    .row .col-7 p{
+        font-size: 2.5em;
         margin-bottom: 1em;
     }
     .row .col-7 p, .row .col-7 label, .row .col-7 .form-text, .row .col-7 button, .row .col-5 p{
-        font-size: 2em;
-    }
-    .form-control, .form-check-input{
-        height: 3em;
-    }
-    .form-check-input{
-        width: 3em;
-        margin-right: 1em;
-    }
-    .row .col-7 textarea{
-        height: 10em;
-    }
-    .row .col-7 button{
-        margin-top: 1em;
-    }
-    .row .col-5 div{
-        width: 110%;
-    }
-    .row .col-5 iframe{
-        width: 110%;
-        height: 55%;
-        margin-top: 1em;
+        font-size: 1.5em;
     }
 }

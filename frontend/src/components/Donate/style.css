@@ -30,18 +30,18 @@
 @media screen and (min-width: 2500px){
     .donate{
         padding: 0 0 2em 18em;
-        background-size: 35% 90%;
+        background-size: 30% 90%;
     }
     .donate h3{
-        font-size: 3em;
-    }
-    .donate h5{
         font-size: 2.5em;
     }
-    .donate p, .donate div button{
+    .donate h5{
         font-size: 2em;
     }
+    .donate p, .donate div button{
+        font-size: 1.5em;
+    }
     .donate div{
-        margin: 2em 0 2em 25em;
+        margin: 2em 0 2em 35em;
     }
 }

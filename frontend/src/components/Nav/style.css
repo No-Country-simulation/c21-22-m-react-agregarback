@@ -19,7 +19,7 @@ nav .logo img{
 }
 nav .items{
     width: 70%;
-    margin-left: 8em;
+    margin-left: 9em;
     display: flex;
     justify-content: center;
 }
@@ -42,8 +42,9 @@ nav .socialMedia img{
 nav .items p:hover, .socialMedia img:hover{
     transform: scale(1.2);
 }
-nav .login{
-    width: 17%;
+nav .login button{
+    width: max-content;
+    margin-right: 0.5em;
 }
 nav .menu{
     display: none;
@@ -100,26 +101,23 @@ nav .menu{
 
 @media screen and (min-width: 2500px){
     nav{
-        background-size: 45% 80%;
+        background-size: 35% 70%;
     }
     nav .logo img{
         width: 50%;
     }
     nav .items{
-        margin-left: 30em;
+        margin-left: 28em;
     }
     nav .items p, nav .login button, nav .register button{
-        font-size: 2em;
-    }
-    nav .socialMedia{
-        margin-right: 1em;
+        font-size: 1.5em;
     }
     nav .socialMedia img{
         width: 120%;
         padding: 0 1em;
     }
     nav .login{
-        width: 15%;
+        margin-left: 8em;
     }
     nav .register{
         padding-right: 1em;

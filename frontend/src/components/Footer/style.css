@@ -54,16 +54,16 @@
 
 @media screen and (min-width: 2500px){
     .footer .info .contact{
-        width: 33em;
-        margin: 0 30em;
+        width: 25em;
+        margin: 0 35em;
     }
     .footer p, .footer .info .contact p{
-        font-size: 2em;
+        font-size: 1.5em;
     }
     .footer .info .socialMedia div{
         padding: 0 1em;
     }
     .footer .info .socialMedia div img{
-        width: 4em;
+        width: 3em;
     }
 }

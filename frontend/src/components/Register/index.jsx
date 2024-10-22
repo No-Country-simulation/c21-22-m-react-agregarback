@@ -60,31 +60,31 @@ const Register = () => {
       <h5>Crea una cuenta para conocer a nuestros peludos y enviar solicitudes de adopción</h5>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="nombre" className="form-label">Nombre</label>
+          <label htmlFor="nombre" className="form-label fw-bold">Nombre</label>
           <input type="text" className="form-control" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="apellido" className="form-label">Apellido</label>
+          <label htmlFor="apellido" className="form-label fw-bold">Apellido</label>
           <input type="text" className="form-control" id="apellido" name="apellido" value={formData.apellido} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
+          <label htmlFor="email" className="form-label fw-bold">Email</label>
           <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="telefono" className="form-label">Teléfono</label>
+          <label htmlFor="telefono" className="form-label fw-bold">Teléfono</label>
           <input type="tel" className="form-control" id="telefono" name="telefono" value={formData.telefono} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="fechaNacimiento" className="form-label">Fecha de Nacimiento</label>
+          <label htmlFor="fechaNacimiento" className="form-label fw-bold">Fecha de Nacimiento</label>
           <input type="date" className="form-control" id="fechaNacimiento" name="fechaNacimiento" value={formData.fechaNacimiento} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="direccion" className="form-label">Dirección</label>
+          <label htmlFor="direccion" className="form-label fw-bold">Dirección</label>
           <input type="text" className="form-control" id="direccion" name="direccion" value={formData.direccion} onChange={handleChange} required />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">Contraseña</label>
+          <label htmlFor="password" className="form-label fw-bold">Contraseña</label>
           <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange} required />
         </div>
         <div className="registerButton">

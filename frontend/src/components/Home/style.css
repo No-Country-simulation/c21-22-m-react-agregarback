@@ -64,23 +64,23 @@
         height: 60em;
     }
     .home h1{
-        font-size: 4em;
+        font-size: 3.5em;
         margin-right: 1.5em;
     }
     .home h4{
-        font-size: 3em;
+        font-size: 2.5em;
         margin-right: 2em;
     }
     .intro{
-        margin: 2em 25em;
+        margin: 2em 30em;
     }
     .intro h5, .steps p, .steps h6{
-        font-size: 2em;
+        font-size: 1.5em;
     }
     .steps{
         margin: 2em 10em;
     }
     .steps h3{
-        font-size: 3em;
+        font-size: 2.5em;
     }
 }

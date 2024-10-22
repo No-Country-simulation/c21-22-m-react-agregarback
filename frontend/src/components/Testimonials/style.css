@@ -14,6 +14,7 @@
     background-color: #1D4273;
     border-radius: 40px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    height: max-content;
 }
 .testimonial img{
     padding: 1em;
@@ -44,10 +45,13 @@
         margin: 2em 7em;
     }
     .testimonials h3{
-        font-size: 3em;
+        font-size: 2.5em;
         margin-left: 3.7em;
     }
+    .testimonial img{
+        width: 40%;
+    }
     .testimonial p{
-        font-size: 2em;
+        font-size: 1.5em;
     }
 }
