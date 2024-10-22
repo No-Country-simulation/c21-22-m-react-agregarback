@@ -50,11 +50,14 @@ const Login = () => {
   };
 
   const handleLogout = () => {
-    // Elimina el token del localStorage
     localStorage.removeItem("token");
-    console.log("Sesión cerrada");
-    // Redirige al usuario a la página de login o inicio
-    navigate("/login");
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Sesion finalizada.",
+      showConfirmButton: false,
+      timer: 3000,
+    });    navigate("/");
   };
 
   return (
@@ -113,10 +116,10 @@ const Login = () => {
         </>
       ) : (
         <div>
-          <h5>Ya has iniciado sesión</h5>
+         <h5>Ya has iniciado sesión</h5>
           <button onClick={handleLogout} className="btn btn-dark">
             Cerrar sesión
-          </button>
+          </button> 
         </div>
       )}
     </div>
