@@ -94,8 +94,9 @@ nav .menu{
     }
     nav.menuOpen .login, nav.menuOpen .register{
         display: block;
-        width: max-content;
-        margin-top: 1em;
+    }
+    nav.menuOpen .login button{
+        margin: 1em 0;
     }
 }
 
