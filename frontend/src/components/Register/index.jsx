@@ -25,7 +25,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); 
     try {
-      const response = await fetch("https://47ef-181-73-15-203.ngrok-free.app/api/v1/user/signup", {
+      const response = await fetch("https://3395-181-73-15-203.ngrok-free.app/api/v1/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
