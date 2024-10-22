@@ -99,10 +99,7 @@ const verifyToken = (req, res, next) => {
 
         let usuario = await Usuario.findByPk(datosUsuarioToken.data.id, {
             attributes: ["id", "nombre", "email", "admin"],
-            // include: [{
-            //     model: Perfil,
-            //     attributes: ["id", "telefono", "region", "comuna", "direccion", "referencias", "usuarioId"]
-            // }]
+           
         });
 
         usuario = usuario.toJSON();
