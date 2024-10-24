@@ -9,7 +9,7 @@ const SolicitudAdopcion = sequelize.define(
             primaryKey: true
         },
         habitantesVivienda: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         animalesExtras: {
@@ -24,10 +24,14 @@ const SolicitudAdopcion = sequelize.define(
             type: DataTypes.STRING(20),
             allowNull: false,
         },
+        mensaje: {
+            type: DataTypes.STRING(500),
+            allowNull: true,
+        },
         estado: {
             type: DataTypes.BOOLEAN(),
             allowNull: true,
-            defaultValue: false,
+            defaultValue: true,
         },
     },
     {

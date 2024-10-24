@@ -24,6 +24,7 @@ const Register = () => {
     e.preventDefault(); 
     try {
       const response = await fetch("https://c97b-181-73-15-203.ngrok-free.app/api/v1/user/signup", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json"

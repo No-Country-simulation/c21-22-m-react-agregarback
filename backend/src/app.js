@@ -8,6 +8,7 @@ const app = express()
 //IMPORT RUTAS
 import users from './routes/users.routes.js'
 import pets from './routes/pets.routes.js'
+import adoptions from './routes/adoptions.routes.js'
 
 
 import * as path from "path";
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 //RUTAS
 app.use('/api/v1/user', users)
 app.use('/api/v1/pets', pets)
+app.use('/api/v1/adoptions', adoptions)
 
 
 export default app
