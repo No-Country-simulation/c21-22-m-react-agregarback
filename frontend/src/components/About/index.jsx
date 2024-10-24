@@ -2,7 +2,9 @@ import "./style.css";
 
 const About = () => {
   return (
-    <div></div>
+    <div className="about">
+
+    </div>
   );
 };
 

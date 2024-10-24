@@ -17,43 +17,47 @@ nav p{
 nav .logo img{
     width: 30%;
 }
+nav.loggedIn .logo img{
+    width: 40%;
+}
 nav .items{
-    width: 70%;
     margin-left: 9em;
     display: flex;
     justify-content: center;
 }
+nav.loggedIn .items{
+    margin: 0 14em 0 12em;
+}
 nav .items p{
     margin: 0 1em;
 }
-nav .bone{
+nav .items p, nav .socialMedia div, nav .profile div{
+    width: max-content;
+}
+nav .bone, nav .menu{
     display: none;
 }
 nav .socialMedia{
     display: flex;
     margin-left: 1em;
 }
-nav .socialMedia div, nav .profile div{
-    width: max-content;
-}
-nav .socialMedia img, nav .profile img{
+nav .socialMedia img{
     width: 60%;
 }
-nav .items p:hover, nav .socialMedia img:hover, nav .profile img:hover{
+nav.loggedIn .profile img{
+    width: 120%;
+}
+nav .items p:hover, nav .socialMedia img:hover, nav.loggedIn .profile img:hover{
     transform: scale(1.2);
 }
 nav .login button{
     width: max-content;
     margin-right: 0.5em;
 }
-nav .menu{
-    display: none;
-}
 
 @media screen and (max-width: 767px){
     nav{
         background-image: none;
-        width: 100vw;
     }
     nav .menu{
         display: block;
@@ -65,23 +69,28 @@ nav .menu{
     nav .menu img{
         width: 2em;
     }
-    nav .logo img{
+    nav .logo img, nav.loggedIn .logo img{
         width: 5em;
         margin: 0 6em 0 9em;
     }
-    nav .items, nav .socialMedia, nav .profile, nav .login, nav .register{
+    nav.menuOpen .logo{
+        margin: 0 8em 0 5em;
+    }
+    nav.loggedIn.menuOpen .logo{
+        margin: 0 14em 0 11em;
+    }
+    nav .items, nav .socialMedia, nav .profile, nav .login, nav .register, nav.loggedIn .login, nav.loggedIn .register{
         display: none;
     }
     nav.menuOpen, nav.menuOpen .items{
         display: flex;
         flex-direction: column;
     }
-    nav.menuOpen .logo{
-        margin: 0 8em 0 5em;
-    }
     nav.menuOpen .items{
-        text-align: center;
         margin: 1em 0 0 0;
+    }
+    nav.menuOpen .items p{
+        margin: auto;
     }
     nav.menuOpen .bone, nav.menuOpen .login, nav.menuOpen .register, nav.menuOpen .profile{
         display: block;
@@ -95,23 +104,33 @@ nav .menu{
     nav.menuOpen .login button{
         margin: 1em 0;
     }
+    nav.loggedIn .profile{
+        margin: 1em 0 0 1em;
+        width: max-content;
+    }
+    nav.loggedIn .profile img{
+        width: 70%;
+    }
 }
 
 @media screen and (min-width: 2500px){
     nav{
         background-size: 35% 70%;
     }
-    nav .logo img{
-        width: 50%;
+    nav.loggedIn .logo img{
+        width: 30%;
     }
     nav .items{
-        margin-left: 28em;
+        margin: 0 10em 0 27em;
+    }
+    nav.loggedIn .items{
+        margin: 0 35em 0 27em;
     }
     nav .items p, nav .login button, nav .register button{
         font-size: 1.5em;
     }
     nav .socialMedia img{
-        width: 120%;
+        width: max-content;
         padding: 0 1em;
     }
     nav .login{
@@ -119,5 +138,11 @@ nav .menu{
     }
     nav .register{
         padding-right: 1em;
+    }
+    nav.loggedIn .profile{
+        margin-left: 1em;
+    }
+    nav.loggedIn .profile img{
+        width: 100%;
     }
 }

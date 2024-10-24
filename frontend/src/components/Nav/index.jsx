@@ -9,14 +9,13 @@ import menu from "/assets/menu.png?url";
 import bone from "/assets/bone.png?url";
 import profile from "/assets/profile.png?url";
 
-const Nav = () => {
+const Nav = ({ isAuth }) => {
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
     setClicked(!clicked);
   };
-  const isLoggedIn = !!localStorage.getItem("token");
   return (
-    <nav className={`${clicked ? "menuOpen" : ""}`}>
+    <nav className={`${clicked ? "menuOpen" : ""} ${isAuth ? "loggedIn" : ""}`}>
       <div className="logo">
         <Link to="/">
           <img src={logo} alt="logo" />
@@ -59,7 +58,7 @@ const Nav = () => {
           </Link>
         </div>
       </div>
-      {!isLoggedIn ? (
+      {!isAuth ? (
         <>
           <div className="login">
             <Link to="/login" onClick={handleClick}>
@@ -75,7 +74,7 @@ const Nav = () => {
       ) : (
         <>
           <div className="profile">
-            <Link to="/profile">
+            <Link to="/profile" onClick={handleClick}>
               <img src={profile} alt="profile" />
             </Link>
           </div>
