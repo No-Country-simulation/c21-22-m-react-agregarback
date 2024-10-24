@@ -16,6 +16,7 @@ const Dogs = () => {
   const [housingType, setHousingType] = useState("");
   const [homeSpace, setHomeSpace] = useState("");
 
+
   useEffect(() => {
     getDogPic();
     getDogData();
@@ -60,21 +61,23 @@ const Dogs = () => {
     }
   };
 
-  const requestAdoption = async () => {
+  const requestAdoption = async (newAdoptionForm) => {
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://findyourbestfriend.vercel.app/api/v1/adoption",
+        "https://c97b-181-73-15-203.ngrok-free.app/api/v1/adoptions/form",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ newAdoptionForm }),
+          Authorization: `Bearer ${token}`,
         }
       );
       if (!response.ok) {
         console.error(response.statusText);
-        return false;
+        // return false;
       }
       const data = await response.json();
       console.log("User sent:", data);
@@ -97,7 +100,7 @@ const Dogs = () => {
         espacioVivienda: homeSpace,
         mensaje: message,
       };
-
+      
       const result = await requestAdoption(newAdoptionForm);
       if (result) {
         alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo");
@@ -207,12 +210,14 @@ const Dogs = () => {
                 />
                 <div className="mx-4">
                   <div className="mb-3 text-justify">{selectedDog.body}</div>
+
                   <div className="mb-3">
                     <h5>
                       Para adoptar a {selectedDog.title}, llena el siguiente
                       formulario
                     </h5>
                   </div>
+
                   <form>
                     <div className="mb-3">
                       <div className="form-outline" data-mdb-input-init>
@@ -333,7 +338,10 @@ const Dogs = () => {
                         className="form-control"
                         name="espacioVivienda"
                       />
-                      <label className="form-label fw-bold" htmlFor="homeSpace">
+                      <label
+                        className="form-label fw-bold"
+                        htmlFor="homeSpace"
+                      >
                         Cuentas con patio/jardin y/o terraza en tu vivienda?{" "}
                       </label>
                     </div>

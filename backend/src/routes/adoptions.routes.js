@@ -1,13 +1,13 @@
 import { Router } from "express";
-import adoption from "../controllers/adoptions.controllers.js"
+import adoptionForm from "../controllers/adoptions.controllers.js"
+import middleware from "../middlewares/Auth.middlewares.js"
 
 
 
 const router = Router();
 
-router.post("/form", adoption)
-// router.post("/form", usuariosController.signUp)
-// router.post("/login", authController.emitToken, usuariosController.logIn)
+router.post("/form", middleware.verifyToken, adoptionForm)
+
 
 
 export default router;
