@@ -19,7 +19,7 @@ nav .logo img{
 }
 nav .items{
     width: 70%;
-    margin-left: 8em;
+    margin-left: 9em;
     display: flex;
     justify-content: center;
 }
@@ -31,19 +31,20 @@ nav .bone{
 }
 nav .socialMedia{
     display: flex;
-    margin: 0 3em;
+    margin-left: 1em;
 }
-nav .socialMedia div{
+nav .socialMedia div, nav .profile div{
     width: max-content;
 }
-nav .socialMedia img{
+nav .socialMedia img, nav .profile img{
     width: 60%;
 }
-nav .items p:hover, .socialMedia img:hover{
+nav .items p:hover, nav .socialMedia img:hover, nav .profile img:hover{
     transform: scale(1.2);
 }
-nav .login{
-    width: 20%;
+nav .login button{
+    width: max-content;
+    margin-right: 0.5em;
 }
 nav .menu{
     display: none;
@@ -56,7 +57,10 @@ nav .menu{
     }
     nav .menu{
         display: block;
-        border: 0;
+        border: none;
+        padding: 0;
+        margin: 1em;
+        background-color: transparent;
     }
     nav .menu img{
         width: 2em;
@@ -65,7 +69,7 @@ nav .menu{
         width: 5em;
         margin: 0 6em 0 9em;
     }
-    nav .items, nav .socialMedia, nav .login{
+    nav .items, nav .socialMedia, nav .profile, nav .login, nav .register{
         display: none;
     }
     nav.menuOpen, nav.menuOpen .items{
@@ -79,7 +83,7 @@ nav .menu{
         text-align: center;
         margin: 1em 0 0 0;
     }
-    nav.menuOpen .bone{
+    nav.menuOpen .bone, nav.menuOpen .login, nav.menuOpen .register, nav.menuOpen .profile{
         display: block;
     }
     nav.menuOpen .bone img{
@@ -87,11 +91,33 @@ nav .menu{
     }
     nav.menuOpen .socialMedia{
         display: flex;
-        margin-left: 4em;
     }
-    nav.menuOpen .login{
-        display: block;
-        width: max-content;
-        margin-top: 1em;
+    nav.menuOpen .login button{
+        margin: 1em 0;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    nav{
+        background-size: 35% 70%;
+    }
+    nav .logo img{
+        width: 50%;
+    }
+    nav .items{
+        margin-left: 28em;
+    }
+    nav .items p, nav .login button, nav .register button{
+        font-size: 1.5em;
+    }
+    nav .socialMedia img{
+        width: 120%;
+        padding: 0 1em;
+    }
+    nav .login{
+        margin-left: 8em;
+    }
+    nav .register{
+        padding-right: 1em;
     }
 }

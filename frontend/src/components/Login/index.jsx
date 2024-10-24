@@ -7,10 +7,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const isLoggedIn = !!localStorage.getItem("token");
-
-  const handleLogin = async (e) => {
-    e.preventDefault(); // Evitar el envío tradicional del formulario
-
+  const handleLogin = async e => {
+    e.preventDefault();
     try {
       const response = await fetch("https://3395-181-73-15-203.ngrok-free.app/api/v1/user/login", {
         method: "POST",
@@ -19,10 +17,9 @@ const Login = () => {
         },
         body: JSON.stringify({
           email: email,
-          password: password,
-        }),
+          password: password
+        })
       });
-
       const data = await response.json();
       if (response.ok) {
         Swal.fire({
@@ -30,11 +27,10 @@ const Login = () => {
           icon: "success",
           title: data.message,
           showConfirmButton: false,
-          timer: 3000,
+          timer: 3000
         });
         localStorage.setItem("token", data.token);
-
-        navigate("/");
+        navigate("/profile");
       } else {
         Swal.fire({
           position: "top-end",
@@ -43,14 +39,14 @@ const Login = () => {
           showConfirmButton: false,
           timer: 3500,
         });
-      }
+      };
     } catch (error) {
-      console.error("Error al realizar el login:", error);
-    }
+      console.error("Error al realizar el login: ", error);
+    };
   };
-
   const handleLogout = () => {
     localStorage.removeItem("token");
+
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -58,8 +54,10 @@ const Login = () => {
       showConfirmButton: false,
       timer: 3000,
     });    navigate("/");
-  };
+    console.log("Sesión cerrada");
+    navigate("/");
 
+  };
   return (
     <div className="loginSection">
       {!isLoggedIn ? (
@@ -71,7 +69,7 @@ const Login = () => {
           </h5>
           <form onSubmit={handleLogin}>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">
+              <label htmlFor="email" className="form-label fw-bold">
                 Email
               </label>
               <input
@@ -80,12 +78,12 @@ const Login = () => {
                 id="email"
                 name="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 required
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">
+              <label htmlFor="password" className="form-label fw-bold">
                 Contraseña
               </label>
               <input
@@ -94,7 +92,7 @@ const Login = () => {
                 id="password"
                 name="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -115,12 +113,21 @@ const Login = () => {
           </div>
         </>
       ) : (
+
         <div>
          <h5>Ya has iniciado sesión</h5>
           <button onClick={handleLogout} className="btn btn-dark">
             Cerrar sesión
           </button> 
         </div>
+
+        <>
+          <h5>Ya has iniciado sesión</h5>
+          <button onClick={handleLogout} className="btn btn-dark">
+            Cerrar sesión
+          </button>
+        </>
+
       )}
     </div>
   );

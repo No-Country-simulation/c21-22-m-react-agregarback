@@ -23,3 +23,34 @@
 .testimonial p{
     padding: 1em 1em 1em 0;
 }
+
+@media screen and (max-width: 767px){
+    .testimonials{
+        margin: 2em 0;
+    }
+    .testimonial, .testimonial div{
+        flex-direction: column;
+    }
+    .testimonial img{
+        width: 100%;
+    }
+    .testimonial p{
+        padding: 0 1em 1em 1em;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .testimonials{
+        margin: 2em 7em;
+    }
+    .testimonials h3{
+        font-size: 2.5em;
+        margin-left: 3.7em;
+    }
+    .testimonial img{
+        width: 40%;
+    }
+    .testimonial p{
+        font-size: 1.5em;
+    }
+}

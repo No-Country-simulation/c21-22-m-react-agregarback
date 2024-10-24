@@ -9,7 +9,9 @@ const Donate = () => {
       <h5><b>¿Cómo puedes contribuir?</b></h5>
       <p><b>• Donaciones económicas:</b> Con una contribución monetaria, podemos cubrir costos esenciales como alimentación, atención veterinaria, medicamentos y mantenimiento de nuestras instalaciones.
       <br />
+      <br />
       <b>• Donaciones de insumos:</b> Si prefieres también aceptamos alimentos, mantas, juguetes, productos de limpieza y medicamentos.
+      <br />
       <br />
       <b>• Voluntariado:</b> No solo se puede ayudar con dinero. También necesitamos manos amigas para cuidar a las mascotas, asistir en los eventos de adopción o ayudar en el refugio.</p>
       <h5><b>¡Haz tu aporte!</b></h5>

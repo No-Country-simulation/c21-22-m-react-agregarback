@@ -13,3 +13,35 @@
 .donate div button{
     margin: 0 1em;
 }
+
+@media screen and (max-width: 767px){
+    .donate{
+        padding: 0 2em 2em 2em;
+        background-size: 20% 10%;
+    }
+    .donate p{
+        width: 100%;
+    }
+    .donate div{
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .donate{
+        padding: 0 0 2em 18em;
+        background-size: 30% 90%;
+    }
+    .donate h3{
+        font-size: 2.5em;
+    }
+    .donate h5{
+        font-size: 2em;
+    }
+    .donate p, .donate div button{
+        font-size: 1.5em;
+    }
+    .donate div{
+        margin: 2em 0 2em 35em;
+    }
+}

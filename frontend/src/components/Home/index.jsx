@@ -17,11 +17,13 @@ const Home = () => {
         <h3><b>¿Cómo funciona?</b></h3>
         <p><b>1. Busca tu compañero ideal:</b> Navega entre las distintas mascotas disponibles para adopción.
         <br />
+        <br />
         <b>2. Envía una solicitud:</b> Regístrate y completa nuestro formulario detallado para ayudarnos a conocer tu situación y asegurarnos de encontrar el match perfecto.
+        <br />
         <br />
         <b>3. Espera la aprobación:</b> Nuestro equipo revisará tu solicitud para garantizar que tanto tú como la mascota estén listos para inciar esta nueva etapa.</p>
         <h3><b>¿Listo para adoptar?</b></h3>
-        <p>Comienza tu viaje hacia la adopción. <b>¡Tu nuevo mejor amigo te está esperando!</b></p>
+        <h6>Comienza tu viaje hacia la adopción. <b>¡Tu nuevo mejor amigo te está esperando!</b></h6>
       </div>
       <Shelter />
       <Testimonials />
