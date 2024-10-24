@@ -42,7 +42,4 @@
     .registerSection form{
         padding: 0 30em;
     }
-    .registerSection label, .registerButton button, .registerSection p{
-        font-size: 1em;
-    }
 }

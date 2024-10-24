@@ -7,12 +7,14 @@ import instagram from "/assets/instagram.png?url";
 import facebook from "/assets/facebook.png?url";
 import menu from "/assets/menu.png?url";
 import bone from "/assets/bone.png?url";
+import profile from "/assets/profile.png?url";
 
 const Nav = () => {
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
     setClicked(!clicked);
   };
+  const isLoggedIn = !!localStorage.getItem("token");
   return (
     <nav className={`${clicked ? "menuOpen" : ""}`}>
       <div className="logo">
@@ -57,16 +59,28 @@ const Nav = () => {
           </Link>
         </div>
       </div>
-      <div className="login">
-        <Link to="/login" onClick={handleClick}>
-          <button type="button" class="btn btn-dark">Iniciar sesión</button>
-        </Link>
-      </div>
-      <div className="register">
-        <Link to="/register" onClick={handleClick}>
-          <button type="button" class="btn btn-dark">Registrarse</button>
-        </Link>
-      </div>
+      {!isLoggedIn ? (
+        <>
+          <div className="login">
+            <Link to="/login" onClick={handleClick}>
+              <button type="button" class="btn btn-dark">Iniciar sesión</button>
+            </Link>
+          </div>
+          <div className="register">
+            <Link to="/register" onClick={handleClick}>
+              <button type="button" class="btn btn-dark">Registrarse</button>
+            </Link>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="profile">
+            <Link to="/profile">
+              <img src={profile} alt="profile" />
+            </Link>
+          </div>
+        </>
+      )}
       <button className="menu" onClick={handleClick}>
         <img src={menu} alt="menu" />
       </button>

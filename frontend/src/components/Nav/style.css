@@ -33,13 +33,13 @@ nav .socialMedia{
     display: flex;
     margin-left: 1em;
 }
-nav .socialMedia div{
+nav .socialMedia div, nav .profile div{
     width: max-content;
 }
-nav .socialMedia img{
+nav .socialMedia img, nav .profile img{
     width: 60%;
 }
-nav .items p:hover, .socialMedia img:hover{
+nav .items p:hover, nav .socialMedia img:hover, nav .profile img:hover{
     transform: scale(1.2);
 }
 nav .login button{
@@ -69,7 +69,7 @@ nav .menu{
         width: 5em;
         margin: 0 6em 0 9em;
     }
-    nav .items, nav .socialMedia, nav .login, nav .register{
+    nav .items, nav .socialMedia, nav .profile, nav .login, nav .register{
         display: none;
     }
     nav.menuOpen, nav.menuOpen .items{
@@ -83,7 +83,7 @@ nav .menu{
         text-align: center;
         margin: 1em 0 0 0;
     }
-    nav.menuOpen .bone{
+    nav.menuOpen .bone, nav.menuOpen .login, nav.menuOpen .register, nav.menuOpen .profile{
         display: block;
     }
     nav.menuOpen .bone img{
@@ -91,9 +91,6 @@ nav .menu{
     }
     nav.menuOpen .socialMedia{
         display: flex;
-    }
-    nav.menuOpen .login, nav.menuOpen .register{
-        display: block;
     }
     nav.menuOpen .login button{
         margin: 1em 0;

@@ -34,7 +34,4 @@
     .loginSection h5{
         font-size: 1.5em;
     }
-    .loginSection label, .loginButton button, .loginSection p{
-        font-size: 1em;
-    }
 }
