@@ -1,11 +1,18 @@
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ setIsAuth }) => {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    console.log("Sesión cerrada");
+    setIsAuth(false);
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Sesión finalizada",
+      showConfirmButton: false,
+      timer: 2000,
+    });
     navigate("/");
   };
   return (

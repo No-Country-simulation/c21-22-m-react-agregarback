@@ -10,7 +10,7 @@ const Contact = () => {
           <div>
             <h3><b>¿Te interesa adoptar un gato o un perro?</b></h3>
             <p>
-              Si estás intersado en iniciar el proceso de adopción o quisieras visitar nuestro refugio para conocer a nuestros peludos, por favor llena el formulario aquí abajo y nos pondremos en contacto contigo, para que puedas conocerlos y saber más de nuestro proyecto.
+              Si estás interesado en iniciar el proceso de adopción o quisieras visitar nuestro refugio para conocer a nuestros peludos, por favor llena el formulario aquí abajo y nos pondremos en contacto contigo, para que puedas conocerlos y saber más de nuestro proyecto.
             </p>
           </div>
           <form>
