@@ -23,7 +23,7 @@ const Register = () => {
   const handleSubmit = async e => {
     e.preventDefault(); 
     try {
-      const response = await fetch("https://3395-181-73-15-203.ngrok-free.app/api/v1/user/signup", {
+      const response = await fetch("https://c97b-181-73-15-203.ngrok-free.app/api/v1/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -35,9 +35,9 @@ const Register = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: data.message,
+          title: "Registro exitoso",
           showConfirmButton: false,
-          timer: 3000
+          timer: 2000
         });
         navigate("/login");  
       } else {
@@ -46,7 +46,7 @@ const Register = () => {
           icon: "error",
           title: data.message,
           showConfirmButton: false,
-          timer: 3500
+          timer: 2000
         });
       };
     } catch (error) {
