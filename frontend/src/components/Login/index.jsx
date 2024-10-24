@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async e => {
     e.preventDefault();
     try {
-      const response = await fetch("https://3395-181-73-15-203.ngrok-free.app/api/v1/user/login", {
+      const response = await fetch("http://localhost:3000/api/v1/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -113,23 +113,14 @@ const Login = () => {
           </div>
         </>
       ) : (
-
-        <div>
-         <h5>Ya has iniciado sesión</h5>
-          <button onClick={handleLogout} className="btn btn-dark">
-            Cerrar sesión
-          </button> 
-        </div>
-
         <>
           <h5>Ya has iniciado sesión</h5>
           <button onClick={handleLogout} className="btn btn-dark">
             Cerrar sesión
           </button>
         </>
-
-      )}
-    </div>
+)}
+</div>
   );
 };
 
