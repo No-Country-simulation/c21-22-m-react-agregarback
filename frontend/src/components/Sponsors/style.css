@@ -19,6 +19,9 @@
     width: 40%;
     margin: 1em;
 }
+.sponsors div img:hover{
+    transform: scale(1.2);
+}
 
 @media screen and (max-width: 767px){
     .sponsors{
