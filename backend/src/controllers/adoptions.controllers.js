@@ -6,31 +6,45 @@ import SolicitudAdopcion from '../models/SolicitudAdopcion.js';
 
 const adoptionForm = async (req, res) => {
 
-    console.log(req.body)
 
-    // const { nombre, email, telefono, habitantesVivienda, animalesExtras, tipoVivienda, espacioVivienda, mensaje } = req.body
+    try {
 
-    // const usurioRegistrado = await Usuario.findOne({
-    //     where: { email: email }
-    // })
+        const { nombre, email, telefono, habitantesVivienda, animalesExtras, tipoVivienda, mensaje, espacioVivienda, mascotaId } = req.body.newAdoptionForm || req.body
 
-    // let datosUsuario = req.usuario
-    // console.log(datosUsuario)
-    // console.log(nombre)
+        let findUser = await Usuario.findOne({ where: { email: email } })
 
-    // if (usuarioToken) {
-    //     const nuevaSolicitud = await SolicitudAdopcion.create({
-    //         nombre,
-    //         email,
-    //         telefono,
-    //         habitantesVivienda,
-    //         animalesExtras,
-    //         tipoVivienda,
-    //         espacioVivienda,
-    //         mensaje
-    //     })
+        if (!findUser) {
+            findUser = null
+            // return res.status(404).json({ 
+            //     code: 404 ,
+            //     message: `El Email: ${email}, no se encuentra registrado. Esta solicitud no quedara registrada en tu perfil`
+            // })
+        }
+        const findPet = await Mascota.findByPk(mascotaId)
 
-    // }
+        if(!findPet){
+            return res.status(404).json({
+                code:404,
+                message :"Mascota no encontrada"
+            })
+        }
+        const createApplication = await SolicitudAdopcion.create({
+            nombre,
+            email,
+            telefono,
+            habitantesVivienda,
+            animalesExtras,
+            tipoVivienda,
+            mensaje,
+            espacioVivienda,
+            usuarioId: findUser.id,
+            mascotaId: findPet.id
+        })
+        res.json({ createApplication })
+    } catch (error) {
+        console.log(error)
+    }
+
 
 };
 

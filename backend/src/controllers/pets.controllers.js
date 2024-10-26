@@ -1,5 +1,5 @@
 import sequelize from "../database/database.js";
-import { QueryTypes } from "sequelize";
+import {  QueryTypes } from "sequelize";
 import Mascota from "../models/Mascota.js";
 import * as middlewareUpload from "../middlewares/uploadImage.middlewares.js";
 
@@ -41,8 +41,17 @@ const createPet = async (req, res) => {
 };
 
 const findPet = async (req, res) => {
-    let allPets = await Mascota.findAll()
-    res.json(allPets)
+    try {
+        let allPets = await Mascota.findAll({
+            attributes: ["id", "nombre", "imagen", "especie", "nivelDeEnergia", "dimension", "raza", "esterilizado", "descripcion", "disponibilidad"],
+            raw: true
+        })
+
+        console.log(allPets)
+        res.json({ data: allPets })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
