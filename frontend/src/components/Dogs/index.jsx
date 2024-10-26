@@ -16,12 +16,11 @@ const Dogs = () => {
   const [housingType, setHousingType] = useState("");
   const [homeSpace, setHomeSpace] = useState("");
 
-
   useEffect(() => {
     getDogPic();
     getDogData();
   }, []);
-
+ 
   const getDogPic = async () => {
     try {
       const response = await fetch(
@@ -65,19 +64,19 @@ const Dogs = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://c97b-181-73-15-203.ngrok-free.app/api/v1/adoptions/form",
+        "http://localhost:3000/api/v1/adoptions/form",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ newAdoptionForm }),
-          Authorization: `Bearer ${token}`,
         }
       );
       if (!response.ok) {
         console.error(response.statusText);
-        // return false;
+        return false;
       }
       const data = await response.json();
       console.log("User sent:", data);
@@ -99,8 +98,9 @@ const Dogs = () => {
         tipoVivienda: housingType,
         espacioVivienda: homeSpace,
         mensaje: message,
+        mascotaId:3
       };
-      
+
       const result = await requestAdoption(newAdoptionForm);
       if (result) {
         alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo");
@@ -338,10 +338,7 @@ const Dogs = () => {
                         className="form-control"
                         name="espacioVivienda"
                       />
-                      <label
-                        className="form-label fw-bold"
-                        htmlFor="homeSpace"
-                      >
+                      <label className="form-label fw-bold" htmlFor="homeSpace">
                         Cuentas con patio/jardin y/o terraza en tu vivienda?{" "}
                       </label>
                     </div>

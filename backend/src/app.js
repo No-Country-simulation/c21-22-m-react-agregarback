@@ -2,12 +2,13 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import fileUpload from 'express-fileupload';
+// const bodyParser = require("body-parser");
 
 const app = express()
 
 //IMPORT RUTAS
 import users from './routes/users.routes.js'
-import pets from './routes/pets.routes.js'
+import pet from './routes/pets.routes.js'
 import adoptions from './routes/adoptions.routes.js'
 
 
@@ -32,7 +33,7 @@ app.get('/', (req, res) => {
 
 //RUTAS
 app.use('/api/v1/user', users)
-app.use('/api/v1/pets', pets)
+app.use('/api/v1/pets', pet)
 app.use('/api/v1/adoptions', adoptions)
 
 
