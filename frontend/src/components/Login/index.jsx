@@ -35,7 +35,7 @@ const Login = ({ setIsAuth }) => {
         Swal.fire({
           position: "top-end",
           icon: "error",
-          title: data.message,
+          title: "Hubo un error al iniciar sesión",
           showConfirmButton: false,
           timer: 3500,
         });

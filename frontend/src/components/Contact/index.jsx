@@ -1,5 +1,5 @@
 import "./style.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
   return (
@@ -16,19 +16,19 @@ const Contact = () => {
           <form>
             <div className="mb-3">
               <label className="form-label fw-bold">Nombre completo</label>
-              <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <input type="text" className="form-control" id="contactName" required />
             </div>
             <div className="mb-3">
               <label className="form-label fw-bold">Email</label>
-              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-              <div id="emailHelp" className="form-text">No compartiremos tu correo con nadie.</div>
+              <input type="email" className="form-control" id="contactEmail" required />
+              <div className="form-text">No compartiremos tu correo con nadie.</div>
             </div>
             <div className="mb-3">
               <label className="form-label fw-bold">Mensaje</label>
-              <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea className="form-control" id="contactMessage" rows="3" required />
             </div>
             <div className="mb-3 form-check fw-bold">
-              <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+              <input type="checkbox" className="form-check-input" id="newsletter" />
               <label className="form-check-label">Suscribirse a nuestro newsletter</label>
             </div>
             <button type="submit" className="btn btn-dark mb-5">Enviar</button>
