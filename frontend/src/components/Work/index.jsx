@@ -14,41 +14,43 @@ const Work = () => {
   const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setSending(true);
-    fetch("https://formspree.io/f/xdkokqee", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-        body: JSON.stringify(formData)
-      })
-      .then(response => {
-      if (response.ok) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Postulación enviada con éxito",
-          showConfirmButton: false,
-          timer: 2000
-        });
-      };
-      })
-      .catch(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "Hubo un error al enviar tu postulación",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      })
-      .finally(() => {
-        setSending(false);
-        setFormData({ workName: "", workEmail: "", workTelephone: "", workCv: "", workMessage: "" });
+    try {
+      await fetch("https://formspree.io/f/xdkokqee", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+          body: JSON.stringify(formData)
+        })
+          .then(response => {
+            if (response.ok) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Postulación enviada con éxito",
+                showConfirmButton: false,
+                timer: 2000
+              });
+            };
+          })
+            .finally(() => {
+              setSending(false);
+              setFormData({ workName: "", workEmail: "", workTelephone: "", workCv: "", workMessage: "" });
+            });
+    } catch (error) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Hubo un error al enviar tu postulación",
+        showConfirmButton: false,
+        timer: 2000,
       });
+      setSending(false);
     };
+  };
   return (
     <div className="work">
       <h3><b>Trabaja con nosotros</b></h3>

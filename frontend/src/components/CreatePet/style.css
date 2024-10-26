@@ -1,0 +1,25 @@
+.createPet{
+    padding: 2em 20em;
+}
+.createPet h3{
+    margin-bottom: 1em;
+    color: #1D4273;
+}
+
+@media screen and (max-width: 767px){
+    .createPet{
+        padding: 2em;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .createPet{
+        padding: 2em 40em;
+    }
+    .createPet h3{
+        font-size: 2.5em;
+    }
+    .createPet form label, .createPet form button{
+        font-size: 1.5em;
+    }
+}
