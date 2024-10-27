@@ -39,6 +39,10 @@ h2 {
     margin-right: 10px;   
 }  
 
+.card img{
+  height: 25em;  
+}
+
 @media (max-width: 600px) {  
     .wrapper {  
         grid-template-columns: repeat(1, 1fr);   /* delimita a una card para pantallas pequeñas */
