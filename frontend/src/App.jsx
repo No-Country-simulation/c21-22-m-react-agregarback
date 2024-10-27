@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import CreatePet from "./components/CreatePet";
 import Footer from "./components/Footer";
 import Error from "./components/Error";
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/login" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <Navigate to="/" />} />
         <Route path="/register" element={!isAuth ? <Register /> : <Navigate to="/" />} />
         <Route path="/profile" element={isAuth ? <Profile setIsAuth={setIsAuth} /> : <Navigate to="/login" />} />
+        <Route path="/createpet" element={<CreatePet />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
