@@ -4,7 +4,7 @@ import db from "./src/database/database.js"
 import './src/models/init-models.js'
 
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 const main = async (req, res) => {
     try {
