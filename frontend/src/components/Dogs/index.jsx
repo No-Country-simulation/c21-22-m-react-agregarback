@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Card } from "./card";
 
 const Dogs = () => {
-  const [dogPic, setDogPic] = useState([""]);
+  //const [dogPic, setDogPic] = useState([""]);
   const [dogData, setDogData] = useState([]);
   const [selectedDog, setSelectedDog] = useState(null);
   const [fullName, setFullName] = useState("");
@@ -16,50 +16,25 @@ const Dogs = () => {
   const [housingType, setHousingType] = useState("");
   const [homeSpace, setHomeSpace] = useState("");
 
-
-  useEffect(() => {
-    getDogPic();
-    getDogData();
-  }, []);
-
-  const getDogPic = async () => {
-    try {
-      const response = await fetch(
-        "https://api.thedogapi.com/v1/images/search?limit=10"
-      );
-      if (!response.ok) {
-        console.error(response.statusText);
-        return false;
-      }
-      const apiDogImage = await response.json();
-      console.log("This are the images", apiDogImage);
-      setDogPic(apiDogImage);
-      return true;
-    } catch (error) {
-      console.error("Error", error);
-      return false;
-    }
-  };
-
   const getDogData = async () => {
     try {
-      const response = await fetch("https://dogapi.dog/api/v2/breeds");
+      const response = await fetch("https://b43a0cd75db57be2f0eff2fb397fcd91.serveo.net/api/v1/pets")
       if (!response.ok) {
-        console.error(response.statusText);
-        return false;
+        console.error(response.statusText)
+        return false
       }
-      const apiDogData = await response.json();
-      console.log("This is the data with:", apiDogData);
-      const currentDog = apiDogData.data;
-      console.log("This dog has this attributes", currentDog);
-      setDogData(currentDog);
-      console.log("This is the dog data", currentDog);
-      return true;
+      const apiDogData = await response.json()
+      console.log("This is the data with:", apiDogData)
+      const currentDog = apiDogData.data
+      console.log("This dogs have this attributes", currentDog)
+      setDogData(currentDog)
+      console.log("This is the dog data", currentDog)
+      return true
     } catch (error) {
-      console.error("Error", error);
-      return false;
+      console.error("Error", error)
+      return false
     }
-  };
+  }
 
   const requestAdoption = async (newAdoptionForm) => {
     try {
@@ -93,14 +68,14 @@ const Dogs = () => {
         nombre: fullName,
         email: email,
         telefono: phone,
-        selectedDog: selectedDog,
+        //selectedDog: selectedDog,
         habitantesVivienda: population,
         animalesExtras: extrapets,
         tipoVivienda: housingType,
         espacioVivienda: homeSpace,
         mensaje: message,
       };
-      
+
       const result = await requestAdoption(newAdoptionForm);
       if (result) {
         alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo");
@@ -114,20 +89,16 @@ const Dogs = () => {
     }
   };
 
-  const cardDogPic = (index) => {
-    if (dogPic.length > 0) {
-      return dogPic[index].url;
-    }
-    console.log("Error: no images found");
-    return "";
-  };
-
   const handleOpenModal = (dog) => {
     setSelectedDog(dog);
   };
 
   // HABILITA FORMULARIO
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    getDogData();
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -138,12 +109,12 @@ const Dogs = () => {
 
   return (
     <div className="container-md mb-5">
-      <div className="row mt-5 mb-3">
+      <div className="row text-center mt-5 mb-3">
         <div className="col">
           <div className="d-flex justify-content-between">
             <div>
               <h2>¡Adopta a tu mejor amigo!</h2>
-              <p className="h5 fw-normal">
+              <p className="h5 fw-normal text-start">
                 Ellos esperan por una familia capaz de darles todo el amor y el
                 cuidado que se merecen. Aquí inicia tu camino para darles una
                 segunda oportunidad. <br /> <br /> En esta sección podrás
@@ -168,9 +139,9 @@ const Dogs = () => {
             <Card
               className="grid-item"
               key={dog.id}
-              image={cardDogPic(index)}
-              title={dog.attributes.name}
-              body={dog.attributes.description}
+              image={dog.imagen}
+              title={dog.nombre}
+              body={dog.descripcion}
               id={dog.id}
               handleOpenModal={handleOpenModal}
               type="dogs"
@@ -368,6 +339,10 @@ const Dogs = () => {
                     setEmail("");
                     setPhone("");
                     setMessage("");
+                    setPopulation("");
+                    setextraPets("");
+                    setHousingType("");
+                    setHomeSpace("");
                   }}
                   type="button"
                   data-dismiss="modal"
@@ -396,3 +371,4 @@ const Dogs = () => {
 };
 
 export default Dogs;
+
