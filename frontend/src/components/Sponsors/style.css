@@ -1,0 +1,48 @@
+.sponsors{
+    padding: 5em 6em 2em 6em;
+    margin: 0 auto;
+    background-color: #FEE701;
+}
+.sponsors h3{
+    color: #1D4273;
+    margin-bottom: 1em;
+}
+.sponsors div{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.sponsors div div{
+    width: 25%;
+}
+.sponsors div img{
+    width: 40%;
+    margin: 1em;
+}
+.sponsors div img:hover{
+    transform: scale(1.2);
+}
+
+@media screen and (max-width: 767px){
+    .sponsors{
+        padding: 2em;
+    }
+    .sponsors div{
+        margin: 0;
+    }
+    .sponsors div div{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .sponsors{
+        padding: 2em 10em;
+    }
+    .sponsors h3{
+        font-size: 2.5em;
+    }
+    .sponsors p{
+        font-size: 1.5em;
+    }
+}
