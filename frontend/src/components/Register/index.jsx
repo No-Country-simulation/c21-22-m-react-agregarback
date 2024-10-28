@@ -23,7 +23,7 @@ const Register = () => {
   const handleSubmit = async e => {
     e.preventDefault(); 
     try {
-      const response = await fetch("http://localhost:3000/api/v1/user/signup", {
+      const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/user/signup", {
 
         method: "POST",
         headers: {
