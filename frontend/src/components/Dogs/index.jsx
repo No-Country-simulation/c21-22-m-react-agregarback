@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Card } from "./card";
 
 const Dogs = () => {
-  //const [dogPic, setDogPic] = useState([""]);
   const [dogData, setDogData] = useState([]);
   const [selectedDog, setSelectedDog] = useState(null);
   const [fullName, setFullName] = useState("");
@@ -18,7 +17,7 @@ const Dogs = () => {
 
   const getDogData = async () => {
     try {
-      const response = await fetch("https://b43a0cd75db57be2f0eff2fb397fcd91.serveo.net/api/v1/pets")
+      const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/pets")
       if (!response.ok) {
         console.error(response.statusText)
         return false
@@ -40,7 +39,7 @@ const Dogs = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://c97b-181-73-15-203.ngrok-free.app/api/v1/adoptions/form",
+        "https://c21-22-m-react-node.onrender.com/api/v1/adoptions/form",
         {
           method: "POST",
           headers: {
@@ -108,7 +107,7 @@ const Dogs = () => {
   }, []);
 
   return (
-    <div className="container-md mb-5">
+    <div className="container-lg mb-5">
       <div className="row text-center mt-5 mb-3">
         <div className="col">
           <div className="d-flex justify-content-between">
@@ -135,7 +134,7 @@ const Dogs = () => {
       </div>
       <div className="row">
         <div className="wrapper">
-          {dogData.map((dog, index) => (
+          {dogData.filter((dog) => dog.especie !== "gato").map((dog, index) => (
             <Card
               className="grid-item"
               key={dog.id}
@@ -358,8 +357,8 @@ const Dogs = () => {
                   className="btn btn-success"
                 >
                   {isLoggedIn
-                    ? "Enviar solicitud de adopción"
-                    : "Debes estar registrado para enviar una solicitud"}
+                    ? "Enviar solicitud"
+                    : "Regístrate para aplicar"}
                 </button>
               </div>
             </div>

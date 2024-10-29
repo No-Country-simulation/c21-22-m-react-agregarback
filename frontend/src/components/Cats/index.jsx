@@ -4,46 +4,28 @@ import { useState, useEffect } from "react"
 import { Card } from "./card";
 
 const Cats = () => {
-  const [catPic, setCatPic] = useState([""])
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [catData, setCatData] = useState([])
   const [selectedCat, setSelectedCat] = useState(null)
   const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [message, setMessage] = useState("")
-
-  useEffect(() => {
-    getCatPic()
-    getCatData()
-  }, [])
-
-  const getCatPic = async () => {
-    try {
-      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10")
-      if (!response.ok) {
-        console.error(response.statusText)
-        return false
-      }
-      const apiCatImage = await response.json()
-      console.log("This are the images", apiCatImage)
-      setCatPic(apiCatImage)
-      return true
-    } catch (error) {
-      console.error("Error", error)
-      return false
-    }
-  }
+  const [population, setPopulation] = useState("");
+  const [extrapets, setextraPets] = useState("");
+  const [housingType, setHousingType] = useState("");
+  const [homeSpace, setHomeSpace] = useState("");
 
   const getCatData = async () => {
     try {
-      const response = await fetch("https://api.thecatapi.com/v1/breeds?limit=10&page=0")
+      const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/pets")
       if (!response.ok) {
         console.error(response.statusText)
         return false
       }
       const apiCatData = await response.json()
       console.log("This is the data with:", apiCatData)
-      const currentCat = apiCatData
+      const currentCat = apiCatData.data
       console.log("This cat has this attributes", currentCat)
       setCatData(currentCat)
       console.log("This is the cat data", currentCat)
@@ -54,55 +36,74 @@ const Cats = () => {
     }
   }
 
-  const requestAdoption = async () => {
+  const requestAdoption = async (newAdoptionForm) => {
     try {
-      const response = await fetch('https://findyourbestfriend.vercel.app/api/v1/adoption', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ newAdoptionForm })
-      })
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        "https://c21-22-m-react-node.onrender.com/api/v1/adoptions/form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ newAdoptionForm }),
+          Authorization: `Bearer ${token}`,
+        }
+      );
       if (!response.ok) {
-        console.error(response.statusText)
-        return false
+        console.error(response.statusText);
+        // return false;
       }
-      const data = await response.json()
-      console.log("User sent:", data)
-      return true
+      const data = await response.json();
+      console.log("User sent:", data);
+      return true;
     } catch (error) {
-      console.error("Error", error)
+      console.error("Error", error);
     }
-  }
+  };
 
-  const newAdoptionForm = {
-    "name": fullName,
-    "email": email,
-    "phone": phone,
-    "message": message
-  }
   const sendForm = async () => {
-    if (fullName && email && phone && message) {
-      const result = await requestAdoption(newAdoptionForm)
-      if (result) {
-        alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo")
-      } else {
-        alert("No se pudo enviar la solicitud, recuerda llenar todos los campos")
-      }
-    }
-  }
+    if (fullName || email || phone || message) {
+      const newAdoptionForm = {
+        nombre: fullName,
+        email: email,
+        telefono: phone,
+        //selectedDog: selectedDog,
+        habitantesVivienda: population,
+        animalesExtras: extrapets,
+        tipoVivienda: housingType,
+        espacioVivienda: homeSpace,
+        mensaje: message,
+      };
 
-  const cardCatPic = (index) => {
-    if (catPic && catPic.length >0 && index < catPic.length) {  
-      return catPic[index].url; // Access the URL for the specific index }  
-    } else {console.error("Image not found for index", index);  
-      return ""
+      const result = await requestAdoption(newAdoptionForm);
+      if (result) {
+        alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo");
+      } else {
+        alert(
+          "No se pudo enviar la solicitud, recuerda llenar todos los campos"
+        );
+      }
+    } else {
+      alert("Por favor completa todos los campos obligatorios.");
     }
-  }
+  };
+
 
   const handleOpenModal = (cat) => {
     setSelectedCat(cat)
   }
+
+  useEffect(() => {
+    getCatData();
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <div className="container-md mb-5">
@@ -120,13 +121,13 @@ const Cats = () => {
       </div>
       <div className="row">
         <div className="wrapper">
-          {catData.map((cat, index) => (
+          {catData.filter(cat => cat.especie === "gato").map((cat, index) => (
             <Card
               className="grid-item"
               key={cat.id}
-              image={cardCatPic(index)}
-              title={cat.name}
-              body={cat.description}
+              image={cat.imagen}
+              title={cat.nombre}
+              body={cat.descripcion}
               id={cat.id}
               handleOpenModal={handleOpenModal}
               type="cats"
@@ -173,10 +174,12 @@ const Cats = () => {
                     <div className="mb-3">
                       <div className="form-outline" data-mdb-input-init>
                         <input
+                          disabled={!isLoggedIn}
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           type="text"
                           id="inputFullName"
+                          name="nombre"
                           className="form-control" />
                         <label className="form-label" htmlFor="inputFullName">Nomble completo</label>
                       </div>
@@ -184,23 +187,99 @@ const Cats = () => {
                     <div className="mb-3">
                       <div className="form-outline" data-mdb-input-init>
                         <input
+                          disabled={!isLoggedIn}
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           type="email"
                           id="inputEmail"
+                          name="email"
                           className="form-control" />
                         <label className="form-label" htmlFor="inputEmail">Email</label>
                       </div>
                       <div className="form-outline" data-mdb-input-init>
                         <input
+                          disabled={!isLoggedIn}
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           type="tel"
                           id="inputPhone"
+                          name="telefono"
                           className="form-control" />
                         <label className="form-label" htmlFor="inputPhone">Teléfono</label>
                       </div>
                     </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={population}
+                        onChange={(e) => setPopulation(e.target.value)}
+                        type="number"
+                        id="population"
+                        className="form-control"
+                        name="habitantesVivienda"
+                      />
+                      <label
+                        className="form-label fw-bold"
+                        htmlFor="population"
+                      >
+                        Cuantas personas habitan en su hogar
+                      </label>
+                    </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={extrapets}
+                        onChange={(e) => setextraPets(e.target.value)}
+                        type="text"
+                        id="extraPets"
+                        className="form-control"
+                        name="animalesExtras"
+                      />
+                      <label className="form-label fw-bold" htmlFor="extraPets">
+                        Actualmente cuenta con mas animalitos en la casa?
+                        <br></br>
+                        <p>(si su respuesta es sí, especifique)</p>
+                      </label>
+                    </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={housingType}
+                        onChange={(e) => setHousingType(e.target.value)}
+                        type="text"
+                        id="housingType"
+                        className="form-control"
+                        name="tipoVivienda"
+                      />
+                      <label
+                        className="form-label fw-bold"
+                        htmlFor="housingType"
+                      >
+                        Actualmente vives en casa o departamento?
+                      </label>
+                    </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={homeSpace}
+                        onChange={(e) => setHomeSpace(e.target.value)}
+                        type="text"
+                        id="homeSpace"
+                        className="form-control"
+                        name="espacioVivienda"
+                      />
+                      <label
+                        className="form-label fw-bold"
+                        htmlFor="homeSpace"
+                      >
+                        Cuentas con patio/jardin y/o terraza en tu vivienda?{" "}
+                      </label>
+                    </div>
+
                     <div className="mb-3">
                       <label className="form-label fw-bold">Mensaje</label>
                       <textarea
@@ -221,6 +300,10 @@ const Cats = () => {
                     setEmail("");
                     setPhone("");
                     setMessage("");
+                    setPopulation("");
+                    setextraPets("");
+                    setHousingType("");
+                    setHomeSpace("");
                   }}
                   type="button"
                   data-dismiss="modal"
@@ -230,10 +313,14 @@ const Cats = () => {
                   Cerrar
                 </button>
                 <button
+                  disabled={!isLoggedIn}
                   onClick={() => sendForm()}
-                  type="button"
-                  className="btn btn-success">
-                  Adoptar
+                  type="submit"
+                  className="btn btn-success"
+                >
+                  {isLoggedIn
+                    ? "Enviar solicitud"
+                    : "Regístrate para aplicar"}
                 </button>
               </div>
             </div>
