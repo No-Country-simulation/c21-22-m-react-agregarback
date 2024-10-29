@@ -1,0 +1,39 @@
+.about{
+    padding: 2em 6em;
+    background-image: url("../../../public/assets/about.JPG");
+    background-position: center;
+    text-align: center;
+}
+.about .who{
+    padding: 1em;
+    width: 40%;
+    background-color: #1D4273;
+    border-radius: 40px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+.about .who h3{
+    margin-bottom: 1em;
+    color: #1D4273;
+}
+.about .who h3, .about .who p{
+    color: white;
+}
+
+@media screen and (max-width: 767px){
+    .about{
+        padding: 1em;
+        background-size: 100% 100%;
+    }
+    .about .who{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .about .who h3{
+        font-size: 2.5em;
+    }
+    .about .who p{
+        font-size: 1.5em;
+    }
+}

@@ -4,10 +4,11 @@ import db from "./src/database/database.js"
 import './src/models/init-models.js'
 
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
-const main = async () => {
+const main = async (req, res) => {
     try {
+
         await db.authenticate();
         await db.sync({ force: false, alter: true });
         app.listen(PORT, () => {
@@ -15,10 +16,7 @@ const main = async () => {
         });
     } catch (error) {
         console.log("Error crearUsuario", error);
-        res.status(500).json({
-            code: 500,
-            message: "Error al crear el nuevo usuario, verifique los datos ingresados."
-        });
+       
     }
 };
 

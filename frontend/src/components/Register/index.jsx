@@ -23,7 +23,7 @@ const Register = () => {
   const handleSubmit = async e => {
     e.preventDefault(); 
     try {
-      const response = await fetch("https://c97b-181-73-15-203.ngrok-free.app/api/v1/user/signup", {
+      const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/user/signup", {
 
         method: "POST",
         headers: {
@@ -45,7 +45,7 @@ const Register = () => {
         Swal.fire({
           position: "top-end",
           icon: "error",
-          title: data.message,
+          title: "Hubo un error al registrarse",
           showConfirmButton: false,
           timer: 2000
         });

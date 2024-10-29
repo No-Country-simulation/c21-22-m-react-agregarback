@@ -9,7 +9,7 @@ const Login = ({ setIsAuth }) => {
   const handleLogin = async e => {
     e.preventDefault();
     try {
-      const response = await fetch("https://c97b-181-73-15-203.ngrok-free.app/api/v1/user/login", {
+      const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const Login = ({ setIsAuth }) => {
         Swal.fire({
           position: "top-end",
           icon: "error",
-          title: data.message,
+          title: "Hubo un error al iniciar sesión",
           showConfirmButton: false,
           timer: 3500,
         });

@@ -7,7 +7,7 @@ const router = Router();
 
 router.post("/signup", usuariosController.signUp)
 router.post("/login", authController.emitToken, usuariosController.logIn)
-// router.get("/updateuser", authController.verifyToken)
+router.get("/", usuariosController.getAllUsers)
 
 
 export default router;

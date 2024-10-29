@@ -2,6 +2,7 @@ import sequelize from "../database/database.js";
 import { QueryTypes } from "sequelize";
 import bcrypt from "bcrypt";
 import User from '../models/User.js'
+import SolicitudAdopcion from "../models/SolicitudAdopcion.js";
 
 const signUp = async (req, res) => {
 
@@ -63,10 +64,27 @@ const logIn = async (req, res) => {
     }
 };
 
+const getAllUsers = async (req, res) => {
+    try {
+        let allUsers = await User.findAll({
+            attributes: ["id", "nombre", "apellido", "fechaNacimiento", "email", "telefono", "direccion"],
+            include: [{
+                model: SolicitudAdopcion,
+                attributes: ["id", "nombre", "estado",]
+            }],
+            raw: true
+        })
+
+        res.json({ data: allUsers })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 let controllers = {
     signUp,
     logIn,
+    getAllUsers
 
 };
 

@@ -15,6 +15,33 @@ const Dogs = () => {
   const [housingType, setHousingType] = useState("");
   const [homeSpace, setHomeSpace] = useState("");
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    getDogPic();
+    getDogData();
+  }, []);
+ 
+  const getDogPic = async () => {
+    try {
+      const response = await fetch(
+        "https://api.thedogapi.com/v1/images/search?limit=10"
+      );
+      if (!response.ok) {
+        console.error(response.statusText);
+        return false;
+      }
+      const apiDogImage = await response.json();
+      console.log("This are the images", apiDogImage);
+      setDogPic(apiDogImage);
+      return true;
+    } catch (error) {
+      console.error("Error", error);
+      return false;
+    }
+  };
+
+>>>>>>> 7d5af7023e74aa04447d02fa61b4e064abeaa74a
   const getDogData = async () => {
     try {
       const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/pets")
@@ -44,14 +71,14 @@ const Dogs = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ newAdoptionForm }),
-          Authorization: `Bearer ${token}`,
         }
       );
       if (!response.ok) {
         console.error(response.statusText);
-        // return false;
+        return false;
       }
       const data = await response.json();
       console.log("User sent:", data);
@@ -73,6 +100,7 @@ const Dogs = () => {
         tipoVivienda: housingType,
         espacioVivienda: homeSpace,
         mensaje: message,
+        mascotaId:3
       };
 
       const result = await requestAdoption(newAdoptionForm);
@@ -308,10 +336,7 @@ const Dogs = () => {
                         className="form-control"
                         name="espacioVivienda"
                       />
-                      <label
-                        className="form-label fw-bold"
-                        htmlFor="homeSpace"
-                      >
+                      <label className="form-label fw-bold" htmlFor="homeSpace">
                         Cuentas con patio/jardin y/o terraza en tu vivienda?{" "}
                       </label>
                     </div>
