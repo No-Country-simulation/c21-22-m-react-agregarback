@@ -15,8 +15,6 @@ const Dogs = () => {
   const [housingType, setHousingType] = useState("");
   const [homeSpace, setHomeSpace] = useState("");
 
-<<<<<<< HEAD
-=======
   useEffect(() => {
     getDogPic();
     getDogData();
@@ -41,7 +39,6 @@ const Dogs = () => {
     }
   };
 
->>>>>>> 7d5af7023e74aa04447d02fa61b4e064abeaa74a
   const getDogData = async () => {
     try {
       const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/pets")
