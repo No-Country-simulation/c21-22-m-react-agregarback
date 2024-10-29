@@ -48,11 +48,10 @@ const Dogs = () => {
         return false
       }
       const apiDogData = await response.json()
-      console.log("This is the data with:", apiDogData)
+
       const currentDog = apiDogData.data
-      console.log("This dogs have this attributes", currentDog)
+      console.log(currentDog.id)
       setDogData(currentDog)
-      console.log("This is the dog data", currentDog)
       return true
     } catch (error) {
       console.error("Error", error)
@@ -63,6 +62,7 @@ const Dogs = () => {
   const requestAdoption = async (newAdoptionForm) => {
     try {
       const token = localStorage.getItem("token");
+
       const response = await fetch(
         "https://c21-22-m-react-node.onrender.com/api/v1/adoptions/form",
         {
@@ -74,6 +74,7 @@ const Dogs = () => {
           body: JSON.stringify({ newAdoptionForm }),
         }
       );
+      
       if (!response.ok) {
         console.error(response.statusText);
         return false;
@@ -101,18 +102,37 @@ const Dogs = () => {
         mascotaId:3
       };
 
+     
       const result = await requestAdoption(newAdoptionForm);
       if (result) {
-        alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo");
-      } else {
-        alert(
-          "No se pudo enviar la solicitud, recuerda llenar todos los campos"
-        );
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Tu solicitud ha sido enviada, pronto nos contactaremos contigo",
+          showConfirmButton: false,
+          timer: 3000
+        });     
+       } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "No se pudo enviar la solicitud, recuerda llenar todos los campos",
+          showConfirmButton: false,
+          timer: 3000
+        });
       }
     } else {
-      alert("Por favor completa todos los campos obligatorios.");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Por favor completa todos los campos obligatorios.",
+        showConfirmButton: false,
+        timer: 3000
+      });    
     }
   };
+
+  
 
   const handleOpenModal = (dog) => {
     setSelectedDog(dog);

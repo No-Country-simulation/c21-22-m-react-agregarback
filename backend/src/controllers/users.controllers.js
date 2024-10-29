@@ -64,27 +64,23 @@ const logIn = async (req, res) => {
     }
 };
 
-const getAllUsers = async (req, res) => {
+const getUser = async (req, res) => {
     try {
-        let allUsers = await User.findAll({
-            attributes: ["id", "nombre", "apellido", "fechaNacimiento", "email", "telefono", "direccion"],
-            include: [{
-                model: SolicitudAdopcion,
-                attributes: ["id", "nombre", "estado",]
-            }],
-            raw: true
-        })
-
-        res.json({ data: allUsers })
+        const usuario = req.usuario; 
+        res.json({ usuario });
     } catch (error) {
-        console.log(error)
+        return res.status(500).json({
+            code: 500,
+            message: "Error al obtener el usuario.",
+            error: error.message
+        });
     }
-}
+};
 
 let controllers = {
     signUp,
     logIn,
-    getAllUsers
+    getUser
 
 };
 

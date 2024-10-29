@@ -104,7 +104,6 @@ const verifyToken = (req, res, next) => {
 
         usuario = usuario.toJSON();
         req.usuario = usuario;
-        res.json({ usuario })
         next();
     });
 };
