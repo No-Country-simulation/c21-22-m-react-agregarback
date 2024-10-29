@@ -2,6 +2,7 @@ import "./style.css";
 import React from "react";
 import { useState, useEffect } from "react"
 import { Card } from "./card";
+import cat from "/assets/adopt-cat.png?url";
 
 const Cats = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -114,7 +115,7 @@ const Cats = () => {
               <h2>¡Encuentra a ese gatito que será tu nuevo mejor amigo!</h2>
               <p className="h5 fw-normal">Ellos anhelan encontrar un hogar lleno de amor y cariños que les brinde la atención que necesitan. Aquí comienza tu viaje para ofrecerles una nueva vida. <br /> <br /> En esta sección podrás descubrir a todos los gatitos que esperan ser adoptados. Tómate tu tiempo para hallar al felino perfecto para ti. Ábreles tu corazón, ¡tú también puedes hacer la diferencia en su vida! </p>
             </div>
-            <img className="adoption-image" src="public/assets/adopt-cat.png" style={{ width: "40%" }} alt="adoption-image" />
+            <img className="adoption-image" src={cat} style={{ width: "40%" }} alt="adoption-image" />
 
           </div>
         </div>

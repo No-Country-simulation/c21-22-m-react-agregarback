@@ -2,6 +2,7 @@ import "./style.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Card } from "./card";
+import dog from "/assets/adopt-dog.png?url";
 
 const Dogs = () => {
   const [dogData, setDogData] = useState([]);
@@ -150,7 +151,7 @@ const Dogs = () => {
             </div>
             <img
               className="adoption-image"
-              src="public/assets/adopt-dog.png"
+              src={dog}
               style={{ width: "40%" }}
               alt="adoption-image"
             />
