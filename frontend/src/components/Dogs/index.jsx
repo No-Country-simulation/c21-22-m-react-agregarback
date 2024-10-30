@@ -1,42 +1,24 @@
 import "./style.css";
 import React from "react";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { Card } from "./card";
+import dog from "/assets/adopt-dog.png?url";
 
 const Dogs = () => {
-  const [dogPic, setDogPic] = useState([""])
-  const [dogData, setDogData] = useState([])
-  const [selectedDog, setSelectedDog] = useState(null)
-  const [fullName, setFullName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [message, setMessage] = useState("")
-
-  useEffect(() => {
-    getDogPic()
-    getDogData()
-  }, [])
-
-  const getDogPic = async () => {
-    try {
-      const response = await fetch("https://api.thedogapi.com/v1/images/search?limit=10")
-      if (!response.ok) {
-        console.error(response.statusText)
-        return false
-      }
-      const apiDogImage = await response.json()
-      console.log("This are the images", apiDogImage)
-      setDogPic(apiDogImage)
-      return true
-    } catch (error) {
-      console.error("Error", error)
-      return false
-    }
-  }
+  const [dogData, setDogData] = useState([]);
+  const [selectedDog, setSelectedDog] = useState(null);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [population, setPopulation] = useState("");
+  const [extrapets, setextraPets] = useState("");
+  const [housingType, setHousingType] = useState("");
+  const [homeSpace, setHomeSpace] = useState("");
 
   const getDogData = async () => {
     try {
-      const response = await fetch("https://dogapi.dog/api/v2/breeds")
+      const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/pets")
       if (!response.ok) {
         console.error(response.statusText)
         return false
@@ -44,7 +26,7 @@ const Dogs = () => {
       const apiDogData = await response.json()
       console.log("This is the data with:", apiDogData)
       const currentDog = apiDogData.data
-      console.log("This dog has this attributes", currentDog)
+      console.log("This dogs have this attributes", currentDog)
       setDogData(currentDog)
       console.log("This is the dog data", currentDog)
       return true
@@ -54,81 +36,115 @@ const Dogs = () => {
     }
   }
 
-  const requestAdoption = async () => {
+  const requestAdoption = async (newAdoptionForm) => {
     try {
-      const response = await fetch('https://findyourbestfriend.vercel.app/api/v1/adoption', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ selectedDog })
-      })
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        "https://c21-22-m-react-node.onrender.com/api/v1/adoptions/form",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ newAdoptionForm }),
+        }
+      );
       if (!response.ok) {
-        console.error(response.statusText)
-        return false
+        console.error(response.statusText);
+        return false;
       }
-      const data = await response.json()
-      console.log("User sent:", data)
-      return true
+      const data = await response.json();
+      console.log("User sent:", data);
+      return true;
     } catch (error) {
-      console.error("Error", error)
+      console.error("Error", error);
     }
-  }
+  };
 
-  const newAdoptionForm = {
-    "name": fullName,
-    "email": email,
-    "phone": phone,
-    "message": message
-  }
   const sendForm = async () => {
-    if (fullName && email && phone && message) {
-      const result = await requestAdoption(newAdoptionForm)
-      if (result) {
-        alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo")
-      } else {
-        alert("No se pudo enviar la solicitud, recuerda llenar todos los campos")
-      }
-    }
-  }
+    if (fullName && email && phone && message && selectedDog) {
+      const newAdoptionForm = {
+        nombre: fullName,
+        email: email,
+        telefono: phone,
+        //selectedDog: selectedDog,
+        habitantesVivienda: population,
+        animalesExtras: extrapets,
+        tipoVivienda: housingType,
+        espacioVivienda: homeSpace,
+        mensaje: message,
+        mascotaId: selectedDog.id
+      };
 
-  const cardDogPic = (index) => {
-    if (dogPic.length > 0) {
-      return dogPic[index].url
+      const result = await requestAdoption(newAdoptionForm);
+      if (result) {
+        alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo");
+      } else {
+        alert(
+          "No se pudo enviar la solicitud, recuerda llenar todos los campos"
+        );
+      }
+    } else {
+      alert("Por favor completa todos los campos obligatorios.");
     }
-    console.log("Error: no images found")
-    return ""
-  }
+  };
 
   const handleOpenModal = (dog) => {
-    setSelectedDog(dog)
-  }
+    setSelectedDog(dog);
+  };
+
+  // HABILITA FORMULARIO
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    getDogData();
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
-    <div className="container-md mb-5">
-      <div className="row mt-5 mb-3">
+    <div className="container-lg mb-5">
+      <div className="row text-center mt-5 mb-3">
         <div className="col">
           <div className="d-flex justify-content-between">
             <div>
               <h2>¡Adopta a tu mejor amigo!</h2>
-              <p className="h5 fw-normal">Ellos esperan por una familia capaz de darles todo el amor y el cuidado que se merecen. Aquí inicia tu camino para darles una segunda oportunidad. <br /> <br /> En esta sección podrás conocer a todos los perros que están disponibles y listos para ser adoptados. Tómate tu tiempo hasta encontrar al indicado para ti. Ábreles tu hogar, tú también puedes poner una patita para ayudarlos. </p>
+              <p className="h5 fw-normal text-start">
+                Ellos esperan por una familia capaz de darles todo el amor y el
+                cuidado que se merecen. Aquí inicia tu camino para darles una
+                segunda oportunidad. <br /> <br /> En esta sección podrás
+                conocer a todos los perros que están disponibles y listos para
+                ser adoptados. Tómate tu tiempo hasta encontrar al indicado para
+                ti. Ábreles tu hogar, tú también puedes poner una patita para
+                ayudarlos.{" "}
+              </p>
             </div>
-            <img className="adoption-image" src="public/assets/adopt-dog.png" style={{ width: "40%" }} alt="adoption-image" />
-
+            <img
+              className="adoption-image"
+              src={dog}
+              style={{ width: "40%" }}
+              alt="adoption-image"
+            />
           </div>
         </div>
       </div>
       <div className="row">
         <div className="wrapper">
-          {dogData.map((dog, index) => (
+          {dogData.filter((dog) => dog.especie !== "gato").map((dog, index) => (
             <Card
               className="grid-item"
               key={dog.id}
-              image={cardDogPic(index)}
-              title={dog.attributes.name}
-              body={dog.attributes.description}
+              image={dog.imagen}
+              title={dog.nombre}
+              body={dog.descripcion}
               id={dog.id}
-              handleOpenModal={handleOpenModal}
+              handleOpenModal={() => handleOpenModal(dog)}
               type="dogs"
             />
           ))}
@@ -160,55 +176,158 @@ const Dogs = () => {
               </div>
               <div className="container-sm modal-body d-flex flex-column">
                 <img
-                  src={selectedDog.image}
+                  src={selectedDog.imagen}
                   alt="dog-image"
                   className="img-fluid rounded mx-auto d-block mt-0 mb-3 mw-50 h-50"
                 />
                 <div className="mx-4">
-                  <div className="mb-3 text-justify">{selectedDog.body}</div>
+                  <h3 className="mb-3 text-justify">{selectedDog.nombre}</h3>
+                  <p><strong>Tamaño:</strong> {selectedDog.dimension}</p>
+                  <p> <strong>Nivel de energía:</strong> {selectedDog.nivelDeEnergia}</p>
+                  <div className="mb-3 text-justify">{selectedDog.descripcion}</div>
+
+                  <div className="mb-3">
+                    <h5>
+                      Para adoptar a {selectedDog.nombre}, llena el siguiente
+                      formulario:
+                    </h5>
+                  </div>
+
                   <form>
-                    <div className="mb-3">
-                      <h5>Para adoptar a {selectedDog.title}, llena el siguiente formulario</h5>
-                    </div>
                     <div className="mb-3">
                       <div className="form-outline" data-mdb-input-init>
                         <input
+                          disabled={!isLoggedIn}
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           type="text"
                           id="inputFullName"
-                          className="form-control" />
-                        <label className="form-label" htmlFor="inputFullName">Nomble completo</label>
+                          className="form-control"
+                          name="nombre"
+                        />
+                        <label
+                          className="form-label fw-bold"
+                          htmlFor="inputFullName"
+                        >
+                          Nomble completo
+                        </label>
                       </div>
                     </div>
-                    <div className="mb-3">
-                      <div className="form-outline" data-mdb-input-init>
-                        <input
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          type="email"
-                          id="inputEmail"
-                          className="form-control" />
-                        <label className="form-label" htmlFor="inputEmail">Email</label>
-                      </div>
-                      <div className="form-outline" data-mdb-input-init>
-                        <input
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          type="tel"
-                          id="inputPhone"
-                          className="form-control" />
-                        <label className="form-label" htmlFor="inputPhone">Teléfono</label>
-                      </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        id="inputEmail"
+                        className="form-control"
+                        name="email"
+                      />
+                      <label
+                        className="form-label fw-bold"
+                        htmlFor="inputEmail"
+                      >
+                        Email
+                      </label>
                     </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        type="tel"
+                        id="inputPhone"
+                        className="form-control"
+                        name="telefono"
+                      />
+                      <label
+                        className="form-label fw-bold"
+                        htmlFor="inputPhone"
+                      >
+                        Teléfono
+                      </label>
+                    </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={population}
+                        onChange={(e) => setPopulation(e.target.value)}
+                        type="number"
+                        id="population"
+                        className="form-control"
+                        name="habitantesVivienda"
+                      />
+                      <label
+                        className="form-label fw-bold"
+                        htmlFor="population"
+                      >
+                        Cuantas personas habitan en su hogar
+                      </label>
+                    </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={extrapets}
+                        onChange={(e) => setextraPets(e.target.value)}
+                        type="text"
+                        id="extraPets"
+                        className="form-control"
+                        name="animalesExtras"
+                      />
+                      <label className="form-label fw-bold" htmlFor="extraPets">
+                        Actualmente cuenta con mas animalitos en la casa?
+                        <br></br>
+                        <p>(si su respuesta es sí, especifique)</p>
+                      </label>
+                    </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={housingType}
+                        onChange={(e) => setHousingType(e.target.value)}
+                        type="text"
+                        id="housingType"
+                        className="form-control"
+                        name="tipoVivienda"
+                      />
+                      <label
+                        className="form-label fw-bold"
+                        htmlFor="housingType"
+                      >
+                        Actualmente vives en casa o departamento?
+                      </label>
+                    </div>
+
+                    <div className="form-outline" data-mdb-input-init>
+                      <input
+                        disabled={!isLoggedIn}
+                        value={homeSpace}
+                        onChange={(e) => setHomeSpace(e.target.value)}
+                        type="text"
+                        id="homeSpace"
+                        className="form-control"
+                        name="espacioVivienda"
+                      />
+                      <label className="form-label fw-bold" htmlFor="homeSpace">
+                        Cuentas con patio/jardin y/o terraza en tu vivienda?{" "}
+                      </label>
+                    </div>
+
                     <div className="mb-3">
                       <label className="form-label fw-bold">Mensaje</label>
                       <textarea
+                        disabled={!isLoggedIn}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         className="form-control"
                         id="inputMessage"
-                        rows="3"></textarea>
+                        rows="3"
+                      ></textarea>
                     </div>
                   </form>
                 </div>
@@ -221,6 +340,10 @@ const Dogs = () => {
                     setEmail("");
                     setPhone("");
                     setMessage("");
+                    setPopulation("");
+                    setextraPets("");
+                    setHousingType("");
+                    setHomeSpace("");
                   }}
                   type="button"
                   data-dismiss="modal"
@@ -230,25 +353,22 @@ const Dogs = () => {
                   Cerrar
                 </button>
                 <button
+                  disabled={!isLoggedIn}
                   onClick={() => sendForm()}
-                  type="button"
-                  className="btn btn-success">
-                  Adoptar
+                  type="submit"
+                  className="btn btn-success"
+                >
+                  {isLoggedIn
+                    ? "Enviar solicitud"
+                    : "Regístrate para aplicar"}
                 </button>
               </div>
             </div>
           </div>
         </div>
       )}
-
-
     </div>
   );
 };
-
-
-
-
-
 
 export default Dogs;
