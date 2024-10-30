@@ -73,8 +73,9 @@ const getUser = async (req, res) => {
             attributes: ["id", "nombre", "apellido", "email", "fechaNacimiento", "telefono", "direccion"],
             include: [{ model: SolicitudAdopcion }]
         })
-        console.log(findeUsuario.dataValues)
-        // res.json({ usuario });
+        const userData = findeUsuario.dataValues
+        console.log(userData)
+        res.json({ userData });
     } catch (error) {
         return res.status(500).json({
             code: 500,
