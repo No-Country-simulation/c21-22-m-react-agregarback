@@ -19,3 +19,19 @@
 .loginSection div p{
     text-align: center;
 }
+
+@media screen and (max-width: 767px){
+    .loginSection{
+        padding: 2em;
+        background-size: 100% 100%;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .loginSection{
+        padding: 3em 55em;
+    }
+    .loginSection h5{
+        font-size: 1.5em;
+    }
+}

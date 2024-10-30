@@ -17,28 +17,132 @@ nav p{
 nav .logo img{
     width: 30%;
 }
+nav.loggedIn .logo img{
+    width: 40%;
+}
 nav .items{
-    width: 70%;
-    margin-left: 8em;
+    margin-left: 9em;
     display: flex;
     justify-content: center;
+}
+nav.loggedIn .items{
+    margin: 0 14em 0 12em;
 }
 nav .items p{
     margin: 0 1em;
 }
+nav .items p, nav .socialMedia div, nav .profile div{
+    width: max-content;
+}
+nav .bone, nav .menu{
+    display: none;
+}
 nav .socialMedia{
     display: flex;
-    margin: 0 3em;
-}
-nav .socialMedia div{
-    width: max-content;
+    margin-left: 1em;
 }
 nav .socialMedia img{
     width: 60%;
 }
-nav .items p:hover, .socialMedia img:hover{
+nav.loggedIn .profile img{
+    width: 120%;
+}
+nav .items p:hover, nav .socialMedia img:hover, nav.loggedIn .profile img:hover{
     transform: scale(1.2);
 }
-nav .login{
-    width: 20%;
+nav .login button{
+    width: max-content;
+    margin-right: 0.5em;
+}
+
+@media screen and (max-width: 767px){
+    nav{
+        background-image: none;
+    }
+    nav .menu{
+        display: block;
+        border: none;
+        padding: 0;
+        margin: 1em;
+        background-color: transparent;
+    }
+    nav .menu img{
+        width: 2em;
+    }
+    nav .logo img, nav.loggedIn .logo img{
+        width: 5em;
+        margin: 0 6em 0 9em;
+    }
+    nav.menuOpen .logo{
+        margin: 0 8em 0 5em;
+    }
+    nav.loggedIn.menuOpen .logo{
+        margin: 0 14em 0 11em;
+    }
+    nav .items, nav .socialMedia, nav .profile, nav .login, nav .register, nav.loggedIn .login, nav.loggedIn .register{
+        display: none;
+    }
+    nav.menuOpen, nav.menuOpen .items{
+        display: flex;
+        flex-direction: column;
+    }
+    nav.menuOpen .items{
+        margin: 1em 0 0 0;
+    }
+    nav.menuOpen .items p{
+        margin: auto;
+    }
+    nav.menuOpen .bone, nav.menuOpen .login, nav.menuOpen .register, nav.menuOpen .profile{
+        display: block;
+    }
+    nav.menuOpen .bone img{
+        width: 12em;
+    }
+    nav.menuOpen .socialMedia{
+        display: flex;
+    }
+    nav.menuOpen .login button{
+        margin: 1em 0;
+    }
+    nav.loggedIn .profile{
+        margin: 1em 0 0 1em;
+        width: max-content;
+    }
+    nav.loggedIn .profile img{
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    nav{
+        background-size: 35% 70%;
+    }
+    nav.loggedIn .logo img{
+        width: 30%;
+    }
+    nav .items{
+        margin: 0 10em 0 27em;
+    }
+    nav.loggedIn .items{
+        margin: 0 35em 0 27em;
+    }
+    nav .items p, nav .login button, nav .register button{
+        font-size: 1.5em;
+    }
+    nav .socialMedia img{
+        width: max-content;
+        padding: 0 1em;
+    }
+    nav .login{
+        margin-left: 8em;
+    }
+    nav .register{
+        padding-right: 1em;
+    }
+    nav.loggedIn .profile{
+        margin-left: 1em;
+    }
+    nav.loggedIn .profile img{
+        width: 100%;
+    }
 }

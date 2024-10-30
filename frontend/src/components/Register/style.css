@@ -1,15 +1,15 @@
-.register{
+.registerSection{
     height: max-content;
     padding: 3em 15em;
     background-image: url("../../../public/assets/register.JPG");
     background-position: left;
     background-size: cover;
 }
-.register h2, .register h5{
+.registerSection h2, .registerSection h5{
     text-align: center;
     color: #1D4273;
 }
-.register form{
+.registerSection form{
     margin: 3em 0;
     padding: 0 10em;
 }
@@ -17,6 +17,29 @@
     width: max-content;
     margin: auto;
 }
-.register div p{
+.registerSection div p{
     text-align: center;
+}
+
+@media screen and (max-width: 767px){
+    .registerSection{
+        padding: 2em;
+        background-size: 400% 100%;
+    }
+    .registerSection form{
+        padding: 0em;
+        background-color: hsla(0, 100%, 100%, 0.3);
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .registerSection h2{
+        font-size: 2.5em;
+    }
+    .registerSection h5{
+        font-size: 1.5em;
+    }
+    .registerSection form{
+        padding: 0 30em;
+    }
 }

@@ -24,11 +24,8 @@ const Dogs = () => {
         return false
       }
       const apiDogData = await response.json()
-      console.log("This is the data with:", apiDogData)
       const currentDog = apiDogData.data
-      console.log("This dogs have this attributes", currentDog)
       setDogData(currentDog)
-      console.log("This is the dog data", currentDog)
       return true
     } catch (error) {
       console.error("Error", error)
@@ -64,11 +61,11 @@ const Dogs = () => {
 
   const sendForm = async () => {
     if (fullName && email && phone && message && selectedDog) {
+
       const newAdoptionForm = {
         nombre: fullName,
         email: email,
         telefono: phone,
-        //selectedDog: selectedDog,
         habitantesVivienda: population,
         animalesExtras: extrapets,
         tipoVivienda: housingType,
@@ -76,19 +73,27 @@ const Dogs = () => {
         mensaje: message,
         mascotaId: selectedDog.id
       };
-
+         
       const result = await requestAdoption(newAdoptionForm);
       if (result) {
-        alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo");
-      } else {
-        alert(
-          "No se pudo enviar la solicitud, recuerda llenar todos los campos"
-        );
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Tu solicitud ha sido enviada, pronto nos contactaremos contigo",
+          showConfirmButton: false,
+          timer: 3000
+        });     
+       } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "No se pudo enviar la solicitud, recuerda llenar todos los campos",
+          showConfirmButton: false,
+          timer: 3000
+        });
       }
-    } else {
-      alert("Por favor completa todos los campos obligatorios.");
-    }
-  };
+    
+  
 
   const handleOpenModal = (dog) => {
     setSelectedDog(dog);
@@ -189,7 +194,7 @@ const Dogs = () => {
                   <div className="mb-3">
                     <h5>
                       Para adoptar a {selectedDog.nombre}, llena el siguiente
-                      formulario:
+                      formulario:                 
                     </h5>
                   </div>
 
@@ -371,4 +376,7 @@ const Dogs = () => {
   );
 };
 
+
 export default Dogs;
+
+

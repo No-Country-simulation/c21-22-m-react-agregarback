@@ -19,7 +19,7 @@ const Usuario = sequelize.define(
             allowNull: false,
         },
         fechaNacimiento: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(20),
             allowNull: true
         },
         email: {
@@ -32,7 +32,7 @@ const Usuario = sequelize.define(
             allowNull: false,
         },
         telefono: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(20),
             allowNull: true
         },
         direccion: {

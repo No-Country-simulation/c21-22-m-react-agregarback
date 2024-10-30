@@ -9,17 +9,14 @@ const Mascota = sequelize.define(
             autoIncrement: true,
             primaryKey: true
         },
-        nombreMascota: {
+        nombre: {
             type: DataTypes.STRING(50),
             allowNull: false,
         },
         imagen: {
             type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: "producto.jpg",
-            validate: {
-                notEmpty: true,
-            },
+            defaultValue: "https://res.cloudinary.com/dyhbfhsss/image/upload/v1728990796/drlydhuy0g711fyhlpds.png",           
         },
         especie: {
             type: DataTypes.STRING(50),
@@ -28,7 +25,7 @@ const Mascota = sequelize.define(
         nivelDeEnergia: {
             type: DataTypes.STRING(50)
         },
-        tamaño: {
+        dimension: {
             type: DataTypes.STRING(50),
             allowNull: false
         },

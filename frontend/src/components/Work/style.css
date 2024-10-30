@@ -1,0 +1,43 @@
+.work{
+    background-image: url("../../../public/assets/work.png");
+    background-position: center;
+    background-size: cover;
+    padding: 5em 6em;
+}
+.work h3, .work h5{
+    margin-bottom: 1em;
+    color: #1D4273;
+}
+.work h5{
+    margin: 2em 0;
+}
+.work form{
+    width: 50%;
+}
+
+@media screen and (max-width: 767px){
+    .work{
+        padding: 2em;
+    }
+    .work form{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 2500px){
+    .work{
+        padding: 2em 10em;
+    }
+    .work h3{
+        font-size: 2.5em;
+    }
+    .work p{
+        width: 50%;
+    }
+    .work h5{
+        font-size: 2em;
+    }
+    .work p, .work form label, .work form .files, .work form button{
+        font-size: 1.5em;
+    }
+}

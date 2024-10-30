@@ -1,9 +1,13 @@
 import { Router } from "express";
-import { singUp, singIn } from "../controllers/users.controllers.js"
-import singUpAuth from "../../middlewares/singUpAuth.middlewares.js";
+import usuariosController from "../controllers/users.controllers.js"
+import authController from "../middlewares/Auth.middlewares.js"
+
+
 const router = Router();
 
-router.post("/singUp", singUp)
-router.post("/SingIn", singUpAuth, singIn)
+router.post("/signup", usuariosController.signUp)
+router.post("/login", authController.emitToken, usuariosController.logIn)
+router.get("/", authController.verifyToken, usuariosController.getUser)
+
 
 export default router;

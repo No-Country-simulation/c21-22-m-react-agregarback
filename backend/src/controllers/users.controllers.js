@@ -2,10 +2,12 @@ import sequelize from "../database/database.js";
 import { QueryTypes } from "sequelize";
 import bcrypt from "bcrypt";
 import User from '../models/User.js'
+import SolicitudAdopcion from "../models/SolicitudAdopcion.js";
 
-export const singUp = async (req, res) => {
+const signUp = async (req, res) => {
+
     try {
-        const { nombre, apellido, email, password } = req.body;
+        const { nombre, apellido, email, password, telefono, direccion, fechaNacimiento } = req.body;
 
         const findUser = await User.findOne({ where: { email } });
         if (findUser) {
@@ -23,31 +25,63 @@ export const singUp = async (req, res) => {
             nombre,
             apellido,
             email,
-            password: hash
+            password: hash,
+            telefono,
+            direccion,
+            fechaNacimiento
         })
         res.status(201).json({
             code: 201,
-            message: "Usuario creado con éxito",
-            data: newUser
+            message: "Usuario creado con éxito ",
+            data: {
+                id: newUser.id,
+                nombre: newUser.nombre,
+                apellido: newUser.apellido,
+                email: newUser.email
+            }
         });
-
     } catch (error) {
         console.log(error)
     }
 }
 
-export const singIn = async (req, res) => {
+const logIn = async (req, res) => {
     try {
         res.status(200).json({
             code: 200,
             message: "Login éxitoso.",
-            usuario: req.usuario
+            usuario: req.usuario,
+            token: req.token
+
         });
 
     } catch (error) {
         res.status(500).json({
             code: 500,
             message: "Error en el proceso de autenticación.",
+            error
         });
     }
-}
+};
+
+const getUser = async (req, res) => {
+    try {
+        const usuario = req.usuario; 
+        res.json({ usuario });
+    } catch (error) {
+        return res.status(500).json({
+            code: 500,
+            message: "Error al obtener el usuario.",
+            error: error.message
+        });
+    }
+};
+
+let controllers = {
+    signUp,
+    logIn,
+    getUser
+
+};
+
+export default controllers;

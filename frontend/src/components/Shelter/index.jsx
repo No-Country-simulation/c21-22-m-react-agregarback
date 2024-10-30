@@ -9,7 +9,9 @@ const Shelter = () => {
         <h5><b>Lo que ofrecemos:</b></h5>
         <p><b>✓ Espacios amplios y seguros:</b> Áreas donde las mascotas pueden jugar y socializar con otras.
         <br />
+        <br />
         <b>✓ Cuidado veterinario:</b> Atención médica y controles regulares para asegurar su salud.
+        <br />
         <br />
         <b>✓ Mucho amor:</b> Cada animal es tratado con cariño mientras espera su adopción.</p>
         <Carousel />

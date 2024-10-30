@@ -64,7 +64,7 @@ const Cats = () => {
   };
 
   const sendForm = async () => {
-    if (fullName || email || phone || message) {
+    if (fullName && email && phone && message && selectedCat) {
       const newAdoptionForm = {
         nombre: fullName,
         email: email,
@@ -79,16 +79,22 @@ const Cats = () => {
 
       const result = await requestAdoption(newAdoptionForm);
       if (result) {
-        alert("Tu solicitud ha sido enviada, pronto nos contactaremos contigo");
-      } else {
-        alert(
-          "No se pudo enviar la solicitud, recuerda llenar todos los campos"
-        );
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Tu solicitud ha sido enviada, pronto nos contactaremos contigo",
+          showConfirmButton: false,
+          timer: 3000
+        });     
+       } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "No se pudo enviar la solicitud, recuerda llenar todos los campos",
+          showConfirmButton: false,
+          timer: 3000
+        });
       }
-    } else {
-      alert("Por favor completa todos los campos obligatorios.");
-    }
-  };
 
 
   const handleOpenModal = (cat) => {
@@ -336,10 +342,5 @@ const Cats = () => {
     </div>
   );
 };
-
-
-
-
-
 
 export default Cats;
