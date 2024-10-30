@@ -16,30 +16,6 @@ const Dogs = () => {
   const [housingType, setHousingType] = useState("");
   const [homeSpace, setHomeSpace] = useState("");
 
-  useEffect(() => {
-    getDogPic();
-    getDogData();
-  }, []);
- 
-  const getDogPic = async () => {
-    try {
-      const response = await fetch(
-        "https://api.thedogapi.com/v1/images/search?limit=10"
-      );
-      if (!response.ok) {
-        console.error(response.statusText);
-        return false;
-      }
-      const apiDogImage = await response.json();
-      console.log("This are the images", apiDogImage);
-      setDogPic(apiDogImage);
-      return true;
-    } catch (error) {
-      console.error("Error", error);
-      return false;
-    }
-  };
-
   const getDogData = async () => {
     try {
       const response = await fetch("https://c21-22-m-react-node.onrender.com/api/v1/pets")
@@ -48,9 +24,7 @@ const Dogs = () => {
         return false
       }
       const apiDogData = await response.json()
-
       const currentDog = apiDogData.data
-      console.log(currentDog.id)
       setDogData(currentDog)
       return true
     } catch (error) {
@@ -62,7 +36,6 @@ const Dogs = () => {
   const requestAdoption = async (newAdoptionForm) => {
     try {
       const token = localStorage.getItem("token");
-
       const response = await fetch(
         "https://c21-22-m-react-node.onrender.com/api/v1/adoptions/form",
         {
@@ -74,7 +47,6 @@ const Dogs = () => {
           body: JSON.stringify({ newAdoptionForm }),
         }
       );
-      
       if (!response.ok) {
         console.error(response.statusText);
         return false;
@@ -88,21 +60,20 @@ const Dogs = () => {
   };
 
   const sendForm = async () => {
-    if (fullName && email && phone && message) {
+    if (fullName && email && phone && message && selectedDog) {
+
       const newAdoptionForm = {
         nombre: fullName,
         email: email,
         telefono: phone,
-        //selectedDog: selectedDog,
         habitantesVivienda: population,
         animalesExtras: extrapets,
         tipoVivienda: housingType,
         espacioVivienda: homeSpace,
         mensaje: message,
-        mascotaId:3
+        mascotaId: selectedDog.id
       };
-
-     
+         
       const result = await requestAdoption(newAdoptionForm);
       if (result) {
         Swal.fire({
@@ -121,17 +92,7 @@ const Dogs = () => {
           timer: 3000
         });
       }
-    } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "Por favor completa todos los campos obligatorios.",
-        showConfirmButton: false,
-        timer: 3000
-      });    
-    }
-  };
-
+    
   
 
   const handleOpenModal = (dog) => {
@@ -188,7 +149,7 @@ const Dogs = () => {
               title={dog.nombre}
               body={dog.descripcion}
               id={dog.id}
-              handleOpenModal={handleOpenModal}
+              handleOpenModal={() => handleOpenModal(dog)}
               type="dogs"
             />
           ))}
@@ -220,17 +181,20 @@ const Dogs = () => {
               </div>
               <div className="container-sm modal-body d-flex flex-column">
                 <img
-                  src={selectedDog.image}
+                  src={selectedDog.imagen}
                   alt="dog-image"
                   className="img-fluid rounded mx-auto d-block mt-0 mb-3 mw-50 h-50"
                 />
                 <div className="mx-4">
-                  <div className="mb-3 text-justify">{selectedDog.body}</div>
+                  <h3 className="mb-3 text-justify">{selectedDog.nombre}</h3>
+                  <p><strong>Tamaño:</strong> {selectedDog.dimension}</p>
+                  <p> <strong>Nivel de energía:</strong> {selectedDog.nivelDeEnergia}</p>
+                  <div className="mb-3 text-justify">{selectedDog.descripcion}</div>
 
                   <div className="mb-3">
                     <h5>
-                      Para adoptar a {selectedDog.title}, llena el siguiente
-                      formulario
+                      Para adoptar a {selectedDog.nombre}, llena el siguiente
+                      formulario:                 
                     </h5>
                   </div>
 
@@ -412,5 +376,7 @@ const Dogs = () => {
   );
 };
 
+
 export default Dogs;
+
 

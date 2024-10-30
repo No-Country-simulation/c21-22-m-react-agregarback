@@ -64,17 +64,17 @@ const Cats = () => {
   };
 
   const sendForm = async () => {
-    if (fullName || email || phone || message) {
+    if (fullName && email && phone && message && selectedCat) {
       const newAdoptionForm = {
         nombre: fullName,
         email: email,
         telefono: phone,
-        //selectedDog: selectedDog,
         habitantesVivienda: population,
         animalesExtras: extrapets,
         tipoVivienda: housingType,
         espacioVivienda: homeSpace,
         mensaje: message,
+        mascotaId: selectedCat.id
       };
 
       const result = await requestAdoption(newAdoptionForm);
@@ -95,16 +95,6 @@ const Cats = () => {
           timer: 3000
         });
       }
-    } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "Por favor completa todos los campos obligatorios.",
-        showConfirmButton: false,
-        timer: 3000
-      });    
-    }
-  };
 
 
   const handleOpenModal = (cat) => {
@@ -146,7 +136,7 @@ const Cats = () => {
               title={cat.nombre}
               body={cat.descripcion}
               id={cat.id}
-              handleOpenModal={handleOpenModal}
+              handleOpenModal={() => handleOpenModal(cat)}
               type="cats"
             />
           ))}
@@ -178,15 +168,18 @@ const Cats = () => {
               </div>
               <div className="container-sm modal-body d-flex flex-column">
                 <img
-                  src={selectedCat.image}
+                  src={selectedCat.imagen}
                   alt="cat-image"
                   className="img-fluid rounded mx-auto d-block mt-0 mb-3 mw-50 h-50"
                 />
                 <div className="mx-4">
-                  <div className="mb-3 text-justify">{selectedCat.body}</div>
+                  <h3 className="mb-3 text-justify">{selectedCat.nombre}</h3>
+                  <p><strong>Tamaño:</strong> {selectedCat.dimension}</p>
+                  <p> <strong>Nivel de energía:</strong> {selectedCat.nivelDeEnergia}</p>
+                  <div className="mb-3 text-justify">{selectedCat.descripcion}</div>
                   <form>
                     <div className="mb-3">
-                      <h5>Para adoptar a {selectedCat.title}, llena el siguiente formulario</h5>
+                      <h5>Para adoptar a {selectedCat.nombre}, llena el siguiente formulario:</h5>
                     </div>
                     <div className="mb-3">
                       <div className="form-outline" data-mdb-input-init>
@@ -349,10 +342,5 @@ const Cats = () => {
     </div>
   );
 };
-
-
-
-
-
 
 export default Cats;
