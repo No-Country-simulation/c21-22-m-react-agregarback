@@ -67,14 +67,12 @@ const logIn = async (req, res) => {
 const getUser = async (req, res) => {
     try {
         const usuario = req.usuario;
-
-        const findeUsuario = await User.findOne({
+        const findUsuario = await User.findOne({
             where: { email: usuario.email },
             attributes: ["id", "nombre", "apellido", "email", "fechaNacimiento", "telefono", "direccion"],
             include: [{ model: SolicitudAdopcion }]
         })
-        const userData = findeUsuario.dataValues
-        console.log(userData)
+        const userData = findUsuario.dataValues
         res.json({ userData });
     } catch (error) {
         return res.status(500).json({

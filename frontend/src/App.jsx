@@ -28,8 +28,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/dogs" element={<Dogs />} />
-        <Route path="/cats" element={<Cats />} />
+        <Route path="/dogs" element={<Dogs isAuth={isAuth} />} />
+        <Route path="/cats" element={<Cats isAuth={isAuth} />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={!isAuth ? <Login setIsAuth={setIsAuth} /> : <Navigate to="/" />} />
