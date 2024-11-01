@@ -153,7 +153,7 @@ const Cats = ({ isAuth }) => {
                 <img
                   src={selectedCat.imagen}
                   alt="cat-image"
-                  className="img-fluid rounded mx-auto d-block mt-0 mb-3 mw-50 h-50"
+                  className="img-fluid rounded mx-auto d-block mt-0 mb-3 mw-50"
                 />
                 <div className="mx-4">
                   <h3 className="mb-3 text-justify">{selectedCat.nombre}</h3>
